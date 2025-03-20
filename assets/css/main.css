@@ -1,0 +1,52 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import "tailwindcss";
+@theme{
+    --font-display: "Nunito Sans","Poppins";
+    --breakpoint-3xl: 102rem;
+}
+body{
+    @apply font-display;
+}
+@font-face {
+    font-family: 'DayDream';
+    src: url('@/assets/fonts/daydream.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+.font-daydream {
+    font-family: 'DayDream', 'Dancing Script';
+}
+.text-stroke-neutral{
+    -webkit-text-stroke:0.75px #404040
+}
+.text-stroke-pink-hover:hover{
+    -webkit-text-stroke:0.75px #f6339a
+}
+
+/*definimos animaciones*/
+@keyframes slideInLeft {
+    from{
+        transform: translateX(-100%);
+
+    }
+    to{
+        transform: translateX(0);
+    }
+}
+@keyframes slideInRight {
+    from{
+        transform: translateX(0);
+    }
+    to{
+        transform: translateX(-100%);
+    }
+}
+
+.animate-slide-left{
+    animation: slideInLeft 0.25s ease-in;
+}
+
+
+.animate-slide-right{
+    animation: slideInRight 0.25s ease-out;
+}

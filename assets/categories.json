@@ -1,0 +1,22 @@
+[
+    {
+        "id": 1,
+        "name": "Prendas"
+    },
+    {
+        "id": 2,
+        "name": "Amigurumi"
+    },
+    {
+        "id": 3,
+        "name": "Accesorios"
+    },
+    {
+        "id": 4,
+        "name": "Joyas"
+    },
+    {
+        "id": 5,
+        "name": "Regalos"
+    }
+]

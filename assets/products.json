@@ -1,0 +1,338 @@
+[
+    {
+        "id": 1,
+        "name": "Amugurimi Pikachu",
+        "category":2,
+        "images": [
+          "https://www.crochetyamigurumis.com/wp-content/uploads/2016/05/pikachu1-1.png",
+          "https://www.crochetyamigurumis.com/wp-content/uploads/2016/05/pikachu1-1.png"
+        ],
+        "details": ["ADASDASD", "ASDASD"],
+        "price": 20.0,
+        "stock": 10
+      },
+      {
+       "id": 2,
+        "name": "Top Blanco",
+       "category":1,
+        "images": [
+          "https://www.crochetyamigurumis.com/wp-content/uploads/2016/05/pikachu1-1.png",
+          "https://www.crochetyamigurumis.com/wp-content/uploads/2016/05/pikachu1-1.png"
+        ],
+        "details": ["ADASDASD", "ASDASD"],
+        "price": 20.0,
+        "stock": 10
+      },
+      {
+        "id": 3,
+        "name": "Llavero Flor",
+        "category":3,
+        "images": [
+          "https://www.crochetyamigurumis.com/wp-content/uploads/2016/05/pikachu1-1.png",
+          "https://www.crochetyamigurumis.com/wp-content/uploads/2016/05/pikachu1-1.png"
+        ],
+        "details": ["ADASDASD", "ASDASD"],
+        "price": 20.0,
+        "stock": 10
+      },
+      {
+        "id": 4,
+        "name": "Flor a crochet",
+        "category":5,
+        "images": [
+          "https://www.crochetyamigurumis.com/wp-content/uploads/2016/05/pikachu1-1.png",
+          "https://www.crochetyamigurumis.com/wp-content/uploads/2016/05/pikachu1-1.png"
+        ],
+        "details": ["ADASDASD", "ASDASD"],
+        "price": 20.0,
+        "stock": 10
+      },
+      {
+        "id": 5,
+        "name": "Amigurumi Oso",
+        "category": 2,
+        "images": [
+          "https://www.crochetyamigurumis.com/wp-content/uploads/2016/05/pikachu1-1.png",
+          "https://www.crochetyamigurumis.com/wp-content/uploads/2016/05/pikachu1-1.png"
+        ],
+        "details": ["Tejido a mano", "Suave y achuchable"],
+        "price": 25.0,
+        "stock": 8
+      },
+      {
+        "id": 6,
+        "name": "Bufanda de Lana",
+        "category": 1,
+        "images": [
+          "https://www.crochetyamigurumis.com/wp-content/uploads/2016/05/pikachu1-1.png",
+          "https://www.crochetyamigurumis.com/wp-content/uploads/2016/05/pikachu1-1.png"
+        ],
+        "details": ["Lana 100%", "Calentita"],
+        "price": 30.0,
+        "stock": 5
+      },
+      {
+        "id": 7,
+        "name": "Llavero Estrella",
+        "category": 3,
+        "images": [
+          "https://www.crochetyamigurumis.com/wp-content/uploads/2016/05/pikachu1-1.png",
+          "https://www.crochetyamigurumis.com/wp-content/uploads/2016/05/pikachu1-1.png"
+        ],
+        "details": ["Hecho a mano", "Colorido"],
+        "price": 15.0,
+        "stock": 12
+      },
+      {
+        "id": 8,
+        "name": "Ramo de Flores Crochet",
+        "category": 5,
+        "images": [
+          "https://www.crochetyamigurumis.com/wp-content/uploads/2016/05/pikachu1-1.png",
+          "https://www.crochetyamigurumis.com/wp-content/uploads/2016/05/pikachu1-1.png"
+        ],
+        "caracteristicita": ["Variedad de flores", "Duradero"],
+        "price": 35.0,
+        "stock": 6
+      },
+      {
+        "id": 9,
+        "name": "Amigurumi Conejo",
+        "category": 2,
+        "images": [
+          "https://www.crochetyamigurumis.com/wp-content/uploads/2016/05/pikachu1-1.png",
+          "https://www.crochetyamigurumis.com/wp-content/uploads/2016/05/pikachu1-1.png"
+        ],
+        "details": ["Ideal para niños", "Diseño tierno"],
+        "price": 22.0,
+        "stock": 9
+      },
+      {
+        "id": 10,
+        "name": "Gorro de Lana",
+        "category": 1,
+        "images": [
+          "https://www.crochetyamigurumis.com/wp-content/uploads/2016/05/pikachu1-1.png",
+          "https://www.crochetyamigurumis.com/wp-content/uploads/2016/05/pikachu1-1.png"
+        ],
+        "details": ["Diferentes colores", "Abrigado"],
+        "price": 28.0,
+        "stock": 7
+      },
+      {
+        "id": 11,
+        "name": "Llavero Corazón",
+        "category": 3,
+        "images": [
+          "https://www.crochetyamigurumis.com/wp-content/uploads/2016/05/pikachu1-1.png",
+          "https://www.crochetyamigurumis.com/wp-content/uploads/2016/05/pikachu1-1.png"
+        ],
+        "details": ["Regalo perfecto", "Diseño romántico"],
+        "price": 18.0,
+        "stock": 11
+      },
+      {
+        "id": 12,
+        "name": "Cesta de Flores Crochet",
+        "category": 5,
+        "images": [
+          "https://www.crochetyamigurumis.com/wp-content/uploads/2016/05/pikachu1-1.png",
+          "https://www.crochetyamigurumis.com/wp-content/uploads/2016/05/pikachu1-1.png"
+        ],
+        "details": ["Decorativa", "Variedad de tamaños"],
+        "price": 40.0,
+        "stock": 4
+      },
+      {
+        "id": 13,
+        "name": "Amigurumi Gato",
+        "category": 2,
+        "images": [
+          "https://www.crochetyamigurumis.com/wp-content/uploads/2016/05/pikachu1-1.png",
+          "https://www.crochetyamigurumis.com/wp-content/uploads/2016/05/pikachu1-1.png"
+        ],
+        "details": ["Diferentes poses", "Detalles realistas"],
+        "price": 24.0,
+        "stock": 10
+      },
+      {
+        "id": 14,
+        "name": "Guantes de Lana",
+        "category": 1,
+        "images": [
+          "https://www.crochetyamigurumis.com/wp-content/uploads/2016/05/pikachu1-1.png",
+          "https://www.crochetyamigurumis.com/wp-content/uploads/2016/05/pikachu1-1.png"
+        ],
+        "details": ["Talla única", "Ideales para el frío"],
+        "price": 26.0,
+        "stock": 8
+      },
+      {
+        "id": 15,
+        "name": "Llavero Luna",
+        "category": 3,
+        "images": [
+          "https://www.crochetyamigurumis.com/wp-content/uploads/2016/05/pikachu1-1.png",
+          "https://www.crochetyamigurumis.com/wp-content/uploads/2016/05/pikachu1-1.png"
+        ],
+        "details": ["Diseño único", "Brilla en la oscuridad"],
+        "price": 20.0,
+        "stock": 12
+      },
+      {
+        "id": 16,
+        "name": "Centro de Mesa de Flores Crochet",
+        "category": 5,
+        "images": [
+          "https://www.crochetyamigurumis.com/wp-content/uploads/2016/05/pikachu1-1.png",
+          "https://www.crochetyamigurumis.com/wp-content/uploads/2016/05/pikachu1-1.png"
+        ],
+        "details": ["Elegante", "Hecho a medida"],
+        "price": 45.0,
+        "stock": 3
+      },
+      {
+        "id": 18,
+        "name": "Amigurumi Elefante",
+        "category": 2,
+        "images": [
+          "https://www.crochetyamigurumis.com/wp-content/uploads/2016/05/pikachu1-1.png",
+          "https://www.crochetyamigurumis.com/wp-content/uploads/2016/05/pikachu1-1.png"
+        ],
+        "details": ["Diseño realista", "Ideal para coleccionistas"],
+        "price": 27.0,
+        "stock": 7
+      },
+      {
+        "id": 19,
+        "name": "Chal de Lana",
+        "category": 1,
+        "images": [
+          "https://www.crochetyamigurumis.com/wp-content/uploads/2016/05/pikachu1-1.png",
+          "https://www.crochetyamigurumis.com/wp-content/uploads/2016/05/pikachu1-1.png"
+        ],
+        "details": ["Tejido a mano", "Variedad de diseños"],
+        "price": 32.0,
+        "stock": 6
+      },
+      {
+        "id": 20,
+        "name": "Llavero Nube",
+        "category": 3,
+        "images": [
+          "https://www.crochetyamigurumis.com/wp-content/uploads/2016/05/pikachu1-1.png",
+          "https://www.crochetyamigurumis.com/wp-content/uploads/2016/05/pikachu1-1.png"
+        ],
+        "details": ["Diseño original", "Ligero"],
+        "price": 16.0,
+        "stock": 13
+      },
+      {
+        "id": 21,
+        "name": "Caja de Regalo con Flores Crochet",
+        "category": 5,
+        "images": [
+          "https://www.crochetyamigurumis.com/wp-content/uploads/2016/05/pikachu1-1.png",
+          "https://www.crochetyamigurumis.com/wp-content/uploads/2016/05/pikachu1-1.png"
+        ],
+        "details": ["Presentación elegante", "Personalizable"],
+        "price": 38.0,
+        "stock": 5
+      },
+        {
+        "id": 22,
+        "name": "Collar de Perlas Crochet",
+        "category": 4,
+        "images": [
+          "https://www.crochetyamigurumis.com/wp-content/uploads/2016/05/pikachu1-1.png",
+          "https://www.crochetyamigurumis.com/wp-content/uploads/2016/05/pikachu1-1.png"
+        ],
+        "details": ["Elegante", "Hecho a mano"],
+        "price": 35.0,
+        "stock": 8
+      },
+      {
+        "id": 23,
+        "name": "Pulsera de Flores Crochet",
+        "category": 4,
+        "images": [
+          "https://www.crochetyamigurumis.com/wp-content/uploads/2016/05/pikachu1-1.png",
+          "https://www.crochetyamigurumis.com/wp-content/uploads/2016/05/pikachu1-1.png"
+        ],
+        "details": ["Colorida", "Diseño único"],
+        "price": 28.0,
+        "stock": 10
+      },
+      {
+        "id": 24,
+        "name": "Anillo de Crochet con Piedra",
+        "category": 4,
+        "images": [
+          "https://www.crochetyamigurumis.com/wp-content/uploads/2016/05/pikachu1-1.png",
+          "https://www.crochetyamigurumis.com/wp-content/uploads/2016/05/pikachu1-1.png"
+        ],
+        "details": ["Ajustable", "Diferentes piedras"],
+        "price": 30.0,
+        "stock": 9
+      },
+      {
+        "id": 25,
+        "name": "Pendientes de Crochet con Flecos",
+        "category": 4,
+        "images": [
+          "https://www.crochetyamigurumis.com/wp-content/uploads/2016/05/pikachu1-1.png",
+          "https://www.crochetyamigurumis.com/wp-content/uploads/2016/05/pikachu1-1.png"
+        ],
+        "details": ["Ligeros", "Estilo boho"],
+        "price": 25.0,
+        "stock": 11
+      },
+      {
+        "id": 26,
+        "name": "Amigurumi León",
+        "category": 2,
+        "images": [
+          "https://www.crochetyamigurumis.com/wp-content/uploads/2016/05/pikachu1-1.png",
+          "https://www.crochetyamigurumis.com/wp-content/uploads/2016/05/pikachu1-1.png"
+        ],
+        "details": ["Melena detallada", "Diseño imponente"],
+        "price": 29.0,
+        "stock": 6
+      },
+      {
+        "id": 27,
+        "name": "Poncho de Lana",
+        "category": 1,
+        "images": [
+          "https://www.crochetyamigurumis.com/wp-content/uploads/2016/05/pikachu1-1.png",
+          "https://www.crochetyamigurumis.com/wp-content/uploads/2016/05/pikachu1-1.png"
+        ],
+        "details": ["Tejido grueso", "Ideal para capas"],
+        "price": 34.0,
+        "stock": 5
+      },
+      {
+        "id": 28,
+        "name": "Llavero Arcoíris",
+        "category": 3,
+        "images": [
+          "https://www.crochetyamigurumis.com/wp-content/uploads/2016/05/pikachu1-1.png",
+          "https://www.crochetyamigurumis.com/wp-content/uploads/2016/05/pikachu1-1.png"
+        ],
+        "details": ["Colores vibrantes", "Alegre"],
+        "price": 17.0,
+        "stock": 14
+      },
+      {
+        "id": 29,
+        "name": "Cesta de Regalo con Flores y Chocolates",
+        "category": 5,
+        "images": [
+          "https://www.crochetyamigurumis.com/wp-content/uploads/2016/05/pikachu1-1.png",
+          "https://www.crochetyamigurumis.com/wp-content/uploads/2016/05/pikachu1-1.png"
+        ],
+        "details": ["Regalo completo", "Ideal para ocasiones especiales"],
+        "price": 42.0,
+        "stock": 4
+      }
+]
