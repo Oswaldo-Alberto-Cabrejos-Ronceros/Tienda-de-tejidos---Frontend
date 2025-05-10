@@ -21,6 +21,12 @@
         </NuxtLink>
       </div>
       <div class="flex gap-1">
+        <!-- si es admin -->
+         <NuxtLink v-if="isAdmin" to="/admin/">
+          <div class="h-auto w-32">
+            <ButtonSecondary :title="buttonAdminTitle"/>
+          </div>
+         </NuxtLink>
         <NuxtLink v-for="icon of iconos" :to="icon.rute"
           ><IconPrimary :icono="icon.icon"
         /></NuxtLink>
@@ -43,13 +49,33 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 //logica para saber si hay un usuario autenticado
 const userStore = useUserStore();
-onMounted(() => {
+//authStore
+const authStore = useAuthStore();
+onMounted(async () => {
   userStore.loadFromSession();
+  //para saber si es admin o no
+  if(userStore.isAuthenticated){
+    authStore.recoverIsAdmin();
+    if(authStore.isAdmin==null){
+      await authStore.setIsAdmin();
+    }
+  }
 });
 
 const userUrl = computed(() =>
   userStore.isAuthenticated ? "/user/profile" : "/auth/login"
 );
+
+//boolean para saber si es admin
+const isAdmin = asyncComputed( async()=>
+{if(userStore.isAuthenticated){
+    authStore.recoverIsAdmin();
+    if(authStore.isAdmin==null){
+      await authStore.setIsAdmin();
+    }
+    return authStore.isAdmin;
+  }}
+)
 const iconos = computed(() => [
   { icon: faCircleUser, rute: userUrl.value },
   { icon: faShoppingBag, rute: "/cart" },
@@ -101,6 +127,8 @@ const closeBarVetical = () => {
 
 // funcion para ejecutar despues de cerrar barra
 const afterLeave = () => {};
+//title button admin
+const buttonAdminTitle:string="Admin"
 </script>
 
 <style scoped>

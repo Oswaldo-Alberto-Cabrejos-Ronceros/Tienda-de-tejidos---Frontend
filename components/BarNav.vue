@@ -1,7 +1,7 @@
 <template>
   <nav class="w-screen flex items-center justify-center">
     <div
-      class="w-[90%] grid grid-cols-6 grid-rows-1 border-solid border-neutral-700 border-b"
+      class="w-[90%] grid grid-cols-6 grid-rows-1 border-solid  border-neutral-700 border-b"
     >
       <BarNavItem v-for="item of items" :title="item.title" :rute="item.rute" />
     </div>

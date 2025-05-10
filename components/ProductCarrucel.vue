@@ -1,5 +1,6 @@
 <template>
   <div class="w-full h-auto flex flex-col">
+    <p class="text-xl text-zinc-800 self-center" v-if="!products.length">No hay Productos</p>
     <!-- Carrusel de productos -->
     <div class="w-full overflow-hidden relative">
       <div

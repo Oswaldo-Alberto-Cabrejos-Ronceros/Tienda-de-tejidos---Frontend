@@ -1,4 +1,15 @@
 export interface Producto{
+    id:number,
+    name:string,
+    category:number,
+    gender:number,
+    images:string[],
+    details:string[],
+    price:number,
+    stock?:number
+};
+//para productRequest
+export interface ProductRequest{
     id?:number,
     name:string,
     category:number,
@@ -6,8 +17,7 @@ export interface Producto{
     images:string[],
     details:string[],
     price:number|null,
-    stock?:number
-};
+}
 //par gender 
 export interface Gender{
     id?:number,
@@ -54,3 +64,12 @@ export interface StockStrict{
     size:number|string,
     stock:number
 }
+
+//para productos favoritos
+export interface FavoriteProduct{
+    id?:number,
+    user?:number,
+    product:number
+}
+
+//interface para la respuesta FavoriteProduct

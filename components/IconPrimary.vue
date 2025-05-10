@@ -32,6 +32,7 @@ const colorMap: Record<string, string> = {
   "red-400": "text-red-400",
   "neutral-50": "text-neutral-50",
   "blue-400": "text-blue-400",
+  "pink-600": "text-pink-600",
 };
 
 const colorHoverMap: Record<string, string> = {
@@ -40,6 +41,7 @@ const colorHoverMap: Record<string, string> = {
   "neutral-50": "hover:text-neutral-50",
   "red-500": "hover:text-red-500",
   "blue-500": "hover:text-blue-500",
+  "pink-300": "hover:text-pink-300",
 };
 
 const textColor = computed(() => colorMap[props.color] || "text-zinc-800");

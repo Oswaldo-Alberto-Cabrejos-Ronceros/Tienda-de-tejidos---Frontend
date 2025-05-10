@@ -49,11 +49,11 @@ const categories:{image:string,name:string,rute:string}[] = [
 ];
 //llamamos a la store Products; despues se llamara a la opcion obtener mas vendidos
 const productStore=useProductStore();
-onMounted(()=>{
+onMounted(async ()=>{
   productStore.recoverProducts();
   //si no hay
   if(!productStore.products.length){
-    productStore.loadProducts();
+    await productStore.loadProducts();
   }
 
 })

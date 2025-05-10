@@ -5,6 +5,7 @@ export default defineNuxtConfig({
   compatibilityDate: "2024-11-01",
   devtools: { enabled: true },
   devServer:{
+    host:'127.0.0.1',
     https:{
       key:'./localhost-key.pem',
       cert:'./localhost.pem'
@@ -20,7 +21,9 @@ export default defineNuxtConfig({
   modules:['@pinia/nuxt','@vueuse/nuxt'],
   runtimeConfig:{
     public:{
-      apiBase:'https://127.0.0.1:8000/'
+      apiBase:'https://127.0.0.1:8000/',
+      mercadoPagoPublicKey: process.env.MERCADO_PAGO_PUBLIC_KEY
     }
-  }
+  },
+
 });

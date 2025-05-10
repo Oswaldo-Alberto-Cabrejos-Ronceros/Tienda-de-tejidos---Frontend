@@ -18,7 +18,7 @@
             :placeholder="inputsAgregar[0].placeholder"
             :type="inputsAgregar[0].name"
             :name="inputsAgregar[0].name"
-            v-model="formAgregar[inputsAgregar[0].name] as keyof Producto
+            v-model="formAgregar[inputsAgregar[0].name] as keyof ProductRequest
             "
           />
         </div>
@@ -34,7 +34,7 @@
           <SelectComponent
             :name="select.name"
             :options="select.options"
-            v-model.number="formAgregar[select.name] as keyof Producto
+            v-model.number="formAgregar[select.name] as keyof ProductRequest
             "
           />
         </div>
@@ -133,7 +133,7 @@
             :placeholder="inputsAgregar[2].placeholder"
             :type="inputsAgregar[2].name"
             :name="inputsAgregar[2].name"
-            v-model.number="formAgregar[inputsAgregar[2].name] as keyof Producto
+            v-model.number="formAgregar[inputsAgregar[2].name] as keyof ProductRequest
             "
           />
         </div>
@@ -155,11 +155,11 @@ import { faListUl } from "@fortawesome/free-solid-svg-icons";
 import { faMoneyBill } from "@fortawesome/free-solid-svg-icons";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import type { Categoria } from "~/interfaces/Categoria";
-import type { GenderStrick, Producto } from "~/interfaces/Producto";
+import type { GenderStrick,ProductRequest } from "~/interfaces/Producto";
 //informacion para el boton
 const buttonAddTitle: string = "Agregar";
 const inputsAgregar: {
-  name: keyof Producto;
+  name: keyof ProductRequest;
   title: string;
   type: string;
   icon: any;
@@ -189,7 +189,7 @@ const inputsAgregar: {
 ];
 //para textarea
 const textAreaAgregar: {
-  name: keyof Producto;
+  name: keyof ProductRequest;
   title: string;
   icon: any;
   placeholder: string;
@@ -234,7 +234,7 @@ const itemsToOptions = (items: Categoria[] | GenderStrick[]) => {
 
 const selectsAgregar = computed<
   {
-    name: keyof Producto;
+    name: keyof ProductRequest;
     title: string;
     options: { value: string | number; label: string }[];
   }[]
@@ -251,13 +251,13 @@ const selectsAgregar = computed<
   },
 ]);
 //reactive de formulario
-const formAgregar = reactive<Producto>({
+const formAgregar = reactive<ProductRequest>({
   name: "",
   category: 1,
   gender: 1,
   images: [""],
   details: [""],
-  price: null,
+  price: null,//verificar o cambiar interface
 });
 //datos de botones añadir
 const botonAddItem = {

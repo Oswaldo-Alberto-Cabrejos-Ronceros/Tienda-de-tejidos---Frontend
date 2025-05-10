@@ -27,19 +27,12 @@ const idParsed=Number(id);
 const productStore=useProductStore(); 
 //onmounted para obtener productos 
 onMounted(()=>{
+  //para menejar productos
   productStore.recoverProducts();
-  if(!productStore.products.length){
-    productStore.loadProducts()
-  }
+  if(!productStore.products.length) productStore.loadProducts()
 });
 //obtenemos producto del store
-const product = asyncComputed(async()=>{
-  productStore.recoverProducts();
-  if(!productStore.products.length){
-    await productStore.loadProducts()
-  }
-  return productStore.getProductById(idParsed);
-},undefined);
+const product = computed(()=> productStore.getProductById(idParsed));
 //simulacion de productos simulares de la misma categorias y mas vendidos
 const productos=asyncComputed(async()=>{
   productStore.recoverProducts();
