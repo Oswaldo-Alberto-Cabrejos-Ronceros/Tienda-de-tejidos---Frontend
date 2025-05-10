@@ -19,10 +19,10 @@ logs
 .idea
 
 # Local env files
-.env
+*.env
 .env.*
 !.env.example
 
 #for crt and key
 
-.pem
+*.pem
