@@ -2,6 +2,7 @@ import type { Product } from "../models/Product";
 import type { ProductWithVariants } from "../models/ProductWithVariants";
 import type { ProductRequest } from "../models/ProductRequest";
 import type { ProductUpdateRequest } from "../models/ProductUpdateRequest";
+import type { Page } from "~/services/common/models/Page";
 
 export interface ProductService {
   create(product: ProductRequest): Promise<Product>;
@@ -19,5 +20,5 @@ export interface ProductService {
     size: number,
     categoryId?: number,
     productName?: string
-  ): Promise<ProductWithVariants[]>;
+  ): Promise<Page<ProductWithVariants>>;
 }

@@ -14,6 +14,8 @@ export class ProductVariantImageServiceImpl
     productVariantImageRequest: ProductVariantImageRequest,
     image: File
   ): Promise<ProductVariantImage> {
+    if (!import.meta.client)
+      throw new Error("Esta funcion es solo para el cliente");
     const formData = new FormData();
     formData.append("image", image);
     formData.append(
@@ -46,6 +48,8 @@ export class ProductVariantImageServiceImpl
     productVariantImageUpdateRequest: ProductVariantImageUpdateRequest,
     image?: File
   ): Promise<ProductVariantImage> {
+    if (!import.meta.client)
+      throw new Error("Esta funcion es solo para el cliente");
     const formData = new FormData();
     if (image) {
       formData.append("image", image);

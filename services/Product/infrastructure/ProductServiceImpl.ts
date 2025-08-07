@@ -4,6 +4,7 @@ import type { ProductWithVariants } from "../domain/models/ProductWithVariants";
 import type { ProductRequest } from "../domain/models/ProductRequest";
 import type { ProductUpdateRequest } from "../domain/models/ProductUpdateRequest";
 import type { ProductService } from "../domain/services/ProductService";
+import type { Page } from "~/services/common/models/Page";
 
 export class ProductServiceImpl implements ProductService {
   constructor(private readonly httpClient: HttpClient) {}
@@ -70,7 +71,7 @@ export class ProductServiceImpl implements ProductService {
     size: number,
     categoryId?: number,
     productName?: string
-  ): Promise<ProductWithVariants[]> {
+  ): Promise<Page<ProductWithVariants>> {
     const queryParams: Record<string, string | number> = { page, size };
     if (categoryId) {
       queryParams.categoryId = categoryId;
@@ -79,7 +80,7 @@ export class ProductServiceImpl implements ProductService {
     if (productName) {
       queryParams.productName = productName;
     }
-    const { data } = await this.httpClient.get<ProductWithVariants[]>(
+    const { data } = await this.httpClient.get<Page<ProductWithVariants>>(
       `${this.urlBase}/variants/search`,
       {
         params: queryParams,

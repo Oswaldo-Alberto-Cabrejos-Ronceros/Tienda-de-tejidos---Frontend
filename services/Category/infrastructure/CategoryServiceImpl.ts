@@ -12,6 +12,8 @@ export class CategoryServiceImpl implements CategoryService {
     image: File
   ): Promise<Category> {
     //new form data
+    if (!import.meta.client)
+      throw new Error("Esta funcion es solo para el cliente");
     const formData = new FormData();
     formData.append("name", categoryRequest.name);
     formData.append("description", categoryRequest.description),
@@ -44,6 +46,8 @@ export class CategoryServiceImpl implements CategoryService {
     image?: File
   ): Promise<Category> {
     //new form data
+    if (!import.meta.client)
+      throw new Error("Esta funcion es solo para el cliente");
     const formData = new FormData();
     if (categoryUpdateRequest.name) {
       formData.append("name", categoryUpdateRequest.name);

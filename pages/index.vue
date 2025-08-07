@@ -3,13 +3,15 @@ import { faSeedling } from "@fortawesome/free-solid-svg-icons";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { faBagShopping } from "@fortawesome/free-solid-svg-icons";
 import { useProductStore } from "#imports";
+import type { Product } from "~/services/Product/domain/models/Product";
+import type { ProductWithVariants } from "~/services/Product/domain/models/ProductWithVariants";
 
 const imagenesCarrucel: string[] = [
   "https://www.crochetyamigurumis.com/wp-content/uploads/2019/05/IMG_0454b.jpg",
   "https://i.ytimg.com/vi/a-ClUHsq1mg/maxresdefault.jpg",
   "https://www.supergurumi.com/wp-content/uploads/2022/10/Patrones-de-Crochet-Amigurumi-Gratis.jpg",
 ];
-const categories:{image:string,name:string,rute:string}[] = [
+const categories: { image: string; name: string; rute: string }[] = [
   {
     image:
       "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Amigurumi-_Ping%C3%BCino_con_orejas_de_conejo.jpg/1200px-Amigurumi-_Ping%C3%BCino_con_orejas_de_conejo.jpg",
@@ -47,16 +49,12 @@ const categories:{image:string,name:string,rute:string}[] = [
   },
 ];
 //llamamos a la store Products; despues se llamara a la opcion obtener mas vendidos
-const productStore=useProductStore();
-onMounted(async ()=>{
-  productStore.recoverProducts();
-  //si no hay
-  if(!productStore.products.length){
-    await productStore.loadProducts();
-  }
-
-})
-const productos = computed(()=>productStore.getProducts);
+const productStore = useProductStore();
+const { findAllWithVariants } = useProductt();
+onMounted(async () => {
+  productos.value = await findAllWithVariants();
+});
+const productos = ref<ProductWithVariants[]>([]);
 const valores: { name: string; icon: any; description: string }[] = [
   {
     name: "Sostenibilidad",
@@ -93,12 +91,18 @@ const valores: { name: string; icon: any; description: string }[] = [
         accumsan nibh rutrum primis magnis, massa bibendum senectus dictumst
         augue sociosqu lobortis, venenatis neque ac sed iaculis nunc.
       </p>
-      <div class="h-[auto] w-full grid grid-cols-1 lg:grid-cols-2  xl:grid-cols-3 gap-3 lg:gap-2">
+      <div
+        class="h-[auto] w-full grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-3 lg:gap-2"
+      >
         <div
           v-for="category in categories"
-          class="flex items-center justify-center  h-auto cursor-pointer"
+          class="flex items-center justify-center h-auto cursor-pointer"
         >
-          <CategoryCard :image="category.image" :name="category.name" :rute="category.rute"/>
+          <CategoryCard
+            :image="category.image"
+            :name="category.name"
+            :rute="category.rute"
+          />
         </div>
       </div>
       <h3 class="text-3xl font-semibold font-daydream">Lo más vendido</h3>

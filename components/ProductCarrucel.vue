@@ -25,10 +25,10 @@
 
 <script lang="ts" setup>
 import { computed, ref } from "vue";
-import type { Producto } from "~/interfaces/Producto";
+import type { ProductWithVariants } from "~/services/Product/domain/models/ProductWithVariants";
 
 // Props
-const props = defineProps<{ products: Producto[] }>();
+const props = defineProps<{ products: ProductWithVariants[] }>();
 
 // Estado de la página actual
 const currentPage = ref(0);

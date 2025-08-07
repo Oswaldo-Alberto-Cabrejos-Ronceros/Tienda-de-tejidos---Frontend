@@ -9,6 +9,8 @@ export default defineNuxtConfig({
   },
   css: ["~/assets/css/main.css"],
   vite: {
+    optimizeDeps: { exclude: ["axios", "form-data"] },
+    ssr: { noExternal: true },
     plugins: [tailwindcss(), require("vite-svg-loader")()],
   },
   modules: ["@pinia/nuxt", "@vueuse/nuxt"],
