@@ -1,10 +1,10 @@
 import { defineStore } from 'pinia'
 import categories from '@/assets/categories.json'
-import type { Categoria } from '~/interfaces/Categoria'
+import type { Category } from '~/services/Category/domain/models/Category'
 
 export const useCategoryStore  = defineStore('category',{
   state: () => ({
-    categories: categories as Categoria []
+    categories: categories as Category []
    }),
    getters:{
     searchCategoryByName:(state)=>{
@@ -15,18 +15,6 @@ export const useCategoryStore  = defineStore('category',{
     }
    },
   actions: {
-    //cargar categorias
-    async loadCategories(){
-      const {$api} = useNuxtApp();
-      try{
-        const response = await $api.get(`/api/products/categories/`);
-        this.categories = response.data as Categoria[];
-        //guardamos en sessionStorange
-        sessionStorage.setItem('categories',JSON.stringify(this.categories))
-      } catch(error){
-        console.log("Error al cargar las categorias",error)
-      }
-    },
     //cargar categorias de sessionStorange
     recoverCategories(){
       const saveCategories = sessionStorage.getItem('categories');

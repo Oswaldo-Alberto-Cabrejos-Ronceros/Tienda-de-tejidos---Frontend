@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import type { Producto } from "~/interfaces/Producto";
 import { faSeedling } from "@fortawesome/free-solid-svg-icons";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { faBagShopping } from "@fortawesome/free-solid-svg-icons";

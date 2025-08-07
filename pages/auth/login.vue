@@ -1,5 +1,6 @@
 <template>
-  <form @submit.prevent="submitLogin"
+  <form
+    @submit.prevent="submitLogin"
     class="flex flex-1 flex-col w-[40vw] min-w-56 max-w-96 text-zinc-800 justify-center items-center gap-4 justify-self-center"
   >
     <h3 class="text-3xl font-semibold">Iniciar Sesión</h3>
@@ -24,7 +25,8 @@
         ¿Olvidaste tu contraseña?
       </p></NuxtLink
     >
-    <div class="flex items-center justify-center gap-2 text-sm">
+    <!-- 
+        <div class="flex items-center justify-center gap-2 text-sm">
       <p>¿No tienes una cuenta?</p>
       <NuxtLink
         class="transition-all duration-150 text-blue-500 hover:text-blue-600"
@@ -32,13 +34,18 @@
         ><p>Registrate Aqui</p></NuxtLink
       >
     </div>
+     -->
   </form>
 </template>
 
 <script lang="ts" setup>
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { faKey } from "@fortawesome/free-solid-svg-icons";
+import { useAuthentication } from "~/composables/useAuthentication";
 import type { LoginForm } from "~/interfaces/auth";
+
+//methods
+const { login } = useAuthentication();
 
 //reactive formulario
 const formLogin = reactive<LoginForm>({
@@ -49,19 +56,19 @@ const inputsLogin: {
   name: keyof LoginForm;
   type: string;
   icon: any;
-  placeholder: string
+  placeholder: string;
 }[] = [
   {
     name: "email",
     type: "email",
     icon: faUser,
-    placeholder: "Ingrese correo electrónico"
+    placeholder: "Ingrese correo electrónico",
   },
   {
     name: "password",
     type: "password",
     icon: faKey,
-    placeholder: "Ingrese contraseña"
+    placeholder: "Ingrese contraseña",
   },
 ];
 const buttonLogin: { title: string; rounded: string } = {
@@ -69,8 +76,12 @@ const buttonLogin: { title: string; rounded: string } = {
   rounded: "rounded-xl",
 };
 //funcion envio sesion
-const submitLogin= async ()=>{
-  const authStore = useAuthStore();
-  authStore.login(formLogin.email,formLogin.password);
-}
+const submitLogin = async () => {
+  try {
+    await login(formLogin);
+    navigateTo("/");
+  } catch (error) {
+    console.error("Error al iniciar sesión:", error);
+  }
+};
 </script>

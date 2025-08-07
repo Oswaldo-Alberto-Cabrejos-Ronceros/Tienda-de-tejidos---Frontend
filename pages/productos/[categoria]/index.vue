@@ -15,7 +15,6 @@
 
 <script lang="ts" setup>
 import { useRoute } from 'vue-router';
-import type { Producto } from '~/interfaces/Producto';
 import { useProductStore } from '#imports';
 //obtenemos la categoria de la ruta
 const route=useRoute();
@@ -35,7 +34,3 @@ onMounted(()=>{async()=>{
 })
 const productos = computed(()=>productStore.getProductsByCategory(categoryId||0)) ;
 </script>
-
-<style>
-
-</style>
