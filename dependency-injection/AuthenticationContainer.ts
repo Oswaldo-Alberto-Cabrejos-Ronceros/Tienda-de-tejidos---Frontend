@@ -4,9 +4,15 @@ import { AuthenticationServiceImpl } from "~/services/Authentication/infrastruct
 
 //instance of http client
 //authentication service
-const authenticationService = new AuthenticationServiceImpl();
 
- export const authenticationUseCases = {
-  login: new LoginAuthUseCase(authenticationService),
-  logout: new LogoutAuthUseCase(authenticationService),
+export const useAuthenticationUseCases = () => {
+  const { $authenticationService } = useNuxtApp();
+  return {
+    login: new LoginAuthUseCase(
+      $authenticationService as AuthenticationServiceImpl
+    ),
+    logout: new LogoutAuthUseCase(
+      $authenticationService as AuthenticationServiceImpl
+    ),
+  };
 };

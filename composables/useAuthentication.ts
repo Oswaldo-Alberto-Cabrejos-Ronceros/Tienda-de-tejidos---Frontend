@@ -1,11 +1,13 @@
 import type { AuthResponse } from "~/services/Authentication/domain/models/AuthResponse";
 import { useAsyncHandler } from "./useAsyncHandler";
-import { authenticationUseCases } from "~/dependency-injection/AuthenticationContainer";
+import { useAuthenticationUseCases } from "~/dependency-injection/AuthenticationContainer";
 import type { AuthRequest } from "~/services/Authentication/domain/models/AuthRequest";
 
 export const useAuthentication = () => {
   //get from useAsyncHandle
   const { loading, error, runUseCase } = useAsyncHandler();
+  //use cases
+  const authenticationUseCases = useAuthenticationUseCases();
   //functions
   //authentication store instance
   const authenticationStore = useAuthStore();
@@ -26,8 +28,8 @@ export const useAuthentication = () => {
   //for get userId
   const getUserId = () => {
     if (!authenticationStore.userId) {
-      console.error('User id no encontrado')
-      throw new Error('User id no encontrado');
+      console.error("User id no encontrado");
+      throw new Error("User id no encontrado");
     }
     return authenticationStore.userId;
   };
@@ -35,8 +37,8 @@ export const useAuthentication = () => {
   //for get role
   const getRole = () => {
     if (!authenticationStore.userRole) {
-      console.error('User role no encontrado');
-      throw new Error('User role no encontrado');
+      console.error("User role no encontrado");
+      throw new Error("User role no encontrado");
     }
     return authenticationStore.userRole;
   };

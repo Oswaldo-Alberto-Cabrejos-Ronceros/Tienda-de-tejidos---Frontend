@@ -2,7 +2,6 @@
 import { faSeedling } from "@fortawesome/free-solid-svg-icons";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { faBagShopping } from "@fortawesome/free-solid-svg-icons";
-import { useProductStore } from "#imports";
 import type { ProductWithVariants } from "~/services/Product/domain/models/ProductWithVariants";
 
 const imagenesCarrucel: string[] = [

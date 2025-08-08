@@ -4,8 +4,10 @@ import type { AuthResponse } from "../domain/models/AuthResponse";
 import type { AuthenticationService } from "../domain/services/AuthenticationService";
 
 export class AuthenticationServiceImpl implements AuthenticationService {
-  private readonly config = useRuntimeConfig();
-  private baseURL = this.config.public.apiBase as string;
+  private readonly baseURL: string;
+  constructor(baseURL: string) {
+    this.baseURL = baseURL;
+  }
   async login(authRequest: AuthRequest): Promise<AuthResponse> {
     const data = await safeFetch<AuthResponse>(`${this.baseURL}/auth/login`, {
       method: "POST",

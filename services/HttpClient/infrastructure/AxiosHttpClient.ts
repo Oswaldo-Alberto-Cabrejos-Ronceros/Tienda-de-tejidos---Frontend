@@ -1,8 +1,6 @@
 import axios, { type AxiosInstance, type AxiosRequestConfig } from "axios";
-import { AuthenticationServiceImpl } from "@/services/Authentication/infrastructure/AuthenticationServiceImpl";
 import type { HttpClient } from "../domain/services/HttpClient";
 import type { RequestConfig } from "../domain/models/RequestConfig";
-import { LogoutAuthUseCase } from "~/services/Authentication/application/LogoutAuthUseCase";
 
 export class AxiosHttpClient implements HttpClient {
   private axiosInstance: AxiosInstance;
@@ -41,11 +39,6 @@ export class AxiosHttpClient implements HttpClient {
               await this.axiosInstance.post("/auth/refresh");
               return this.axiosInstance(originalRequest);
             } catch (refreshError) {
-              //if resfresh fails, logout
-              const logoutAuth = new LogoutAuthUseCase(
-                new AuthenticationServiceImpl()
-              );
-              logoutAuth.execute();
               // redirige to login
               window.location.href = "/auth/login";
               return Promise.reject(refreshError);
