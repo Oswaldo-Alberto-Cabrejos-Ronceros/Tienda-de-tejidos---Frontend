@@ -78,8 +78,10 @@ const buttonLogin: { title: string; rounded: string } = {
 //funcion envio sesion
 const submitLogin = async () => {
   try {
-    await login(formLogin);
-    navigateTo("/");
+    const authResponse = await login(formLogin);
+    authResponse.role === "ADMINISTRADOR"
+      ? navigateTo("/admin")
+      : navigateTo("/");
   } catch (error) {
     console.error("Error al iniciar sesión:", error);
   }
