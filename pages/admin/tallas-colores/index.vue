@@ -29,6 +29,8 @@
 <script lang="ts" setup>
 import AdminColorAddForm from '~/components/AdminColorAddForm.vue';
 import AdminSizeAddForm from '~/components/AdminSizeAddForm.vue';
+import type { Color } from '~/services/Color/domain/models/Color';
+import type { Size } from '~/services/Size/domain/models/Size';
 
 definePageMeta({
   layout: "admin",
@@ -37,21 +39,18 @@ definePageMeta({
 const titlesTableTallas: string[] = ["N°", "Talla"];
 //para colores
 const titlesTableColores: string[] = ["N°", "Color"];
-//uses para tallas y colores
-const sizeStore = useSizeStore();
-const colorStore = useColorStore();
+const {findAll:findAllSizes}=useSizee();
+const {findAll:findAllColors}=useColorr();
 //obtenemos la informacion de las stores
-onMounted(() => {
+onMounted(async() => {
   //para sizes
-  sizeStore.recoverSizes();
-  if (!sizeStore.sizes.length) sizeStore.loadSizes();
+  sizes.value = await findAllSizes();
   //colores
-  colorStore.recoverColors();
-  if (!colorStore.colors.length) colorStore.loadColors();
+  colors.value = await findAllColors();
 });
 
-const sizes = computed(() => sizeStore.sizes);
-const colors = computed(() => colorStore.colors);
+const sizes = ref<Size[]>([])
+const colors = ref<Color[]>([]);
 const buttonsTitle:string="Agregar";
 //concerniente al modal de tallas
 const showModalSize = ref(false);
