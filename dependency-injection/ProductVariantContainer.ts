@@ -8,17 +8,19 @@ import { UpdateProductVariantUseCase } from "~/services/ProductVariant/applicati
 import { ProductVariantServiceImpl } from "~/services/ProductVariant/infrastructure/ProductVariantServiceImpl";
 import { AxiosHttpClient } from "~/services/HttpClient/infrastructure/AxiosHttpClient";
 
-// instancia del cliente http
-const axiosHttpClient = new AxiosHttpClient();
-
-// instancia del servicio
-const productVariantService = new ProductVariantServiceImpl(axiosHttpClient);
-
-export const productVariantUseCases = {
-  create: new CreateProductVariantUseCase(productVariantService),
-  findAll: new FindAllProductVariantsUseCase(productVariantService),
-  findById: new FindProductVariantByIdUseCase(productVariantService),
-  remove: new RemoveProductVariantUseCase(productVariantService),
-  restore: new RestoreProductVariantUseCase(productVariantService),
-  update: new UpdateProductVariantUseCase(productVariantService),
+export const useProductVariantUseCases = () => {
+  //http client instance
+  const { $httpClient } = useNuxtApp();
+  // instancia del servicio
+  const productVariantService = new ProductVariantServiceImpl(
+    $httpClient as AxiosHttpClient
+  );
+  return {
+    create: new CreateProductVariantUseCase(productVariantService),
+    findAll: new FindAllProductVariantsUseCase(productVariantService),
+    findById: new FindProductVariantByIdUseCase(productVariantService),
+    remove: new RemoveProductVariantUseCase(productVariantService),
+    restore: new RestoreProductVariantUseCase(productVariantService),
+    update: new UpdateProductVariantUseCase(productVariantService),
+  };
 };

@@ -1,10 +1,12 @@
 import type { ProductRequest } from "~/services/Product/domain/models/ProductRequest";
 import { useAsyncHandler } from "./useAsyncHandler";
-import { productUseCases } from "~/dependency-injection/ProductContainer";
+import { useProductUseCases } from "~/dependency-injection/ProductContainer";
 
 export const useProductt = () => {
   //get from useAsyncHandle
   const { loading, error, runUseCase } = useAsyncHandler();
+  //use cases
+  const productUseCases = useProductUseCases();
   //functions
   const create = async (productRequest: ProductRequest) => {
     return await runUseCase("createProduct", () =>

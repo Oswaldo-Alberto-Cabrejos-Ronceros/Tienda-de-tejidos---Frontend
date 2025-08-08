@@ -7,7 +7,7 @@
     <div class="flex gap-1 w-full md:w-[60%]">
       <div class="flex flex-1 flex-col gap-1">
         <ImageCardSmall
-          v-for="(image, id) in product.images"
+          v-for="(image, id) in product.variants[0].images"
           :id="id"
           :name="`${product.name} ${id}`"
           :image="image"
@@ -17,7 +17,7 @@
       <div class="flex items-center">
         <ImageCardLarge
           :name="product.name"
-          :image="product.images[indexImage]"
+          :image="product.variants[0].images[indexImage]"
         />
       </div>
     </div>
@@ -40,7 +40,7 @@
           :color-hover="iconHeartFavorite.colorHover"
         />
       </div>
-      <p class="text-2xl font-bold">S/{{ " " + product.price }}</p>
+      <p class="text-2xl font-bold">S/{{ " " + product.variants[0].price }}</p>
       <SelectComponent
         v-if="!isAdmin"
         :name="cantidadSelect.name"
@@ -62,20 +62,18 @@
       </p>
       <div class="text-base flex flex-col gap-1">
         <p>Características:</p>
-        <p v-for="caracteristica in product.details">
-          - {{ " " + caracteristica }}
-        </p>
+        <p>{{ product.description }}</p>
       </div>
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
-import type { Producto } from "~/interfaces/Producto";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { ref } from "vue";
+import type { ProductWithVariants } from "~/services/Product/domain/models/ProductWithVariants";
 const props = defineProps<{
-  product?: Producto;
+  product?: ProductWithVariants;
   isAdmin?: boolean;
 }>();
 //authStore
@@ -138,7 +136,7 @@ const changeImage = (index: number) => {
 const quantity = ref("1");
 //emision de evento para compra
 const emit = defineEmits(["comprar"]);
-const emitirComprar = (product: Producto) => {
+const emitirComprar = (product: ProductWithVariants) => {
   emit("comprar", product, Number(quantity.value));
 };
 //funciones para el boton favorito

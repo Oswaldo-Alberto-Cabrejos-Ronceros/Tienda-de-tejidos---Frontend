@@ -8,17 +8,19 @@ import { UpdateColorUseCase } from "~/services/Color/application/UpdateColorUseC
 import { ColorServiceImpl } from "~/services/Color/infrastructure/ColorServiceImpl";
 import { AxiosHttpClient } from "~/services/HttpClient/infrastructure/AxiosHttpClient";
 
-// http client instance
-const axiosHttpClient = new AxiosHttpClient();
+//http client instance
 
-// service instance
-const colorService = new ColorServiceImpl(axiosHttpClient);
+export const useColorUseCases = () => {
+  const { $httpClient } = useNuxtApp();
 
-export const colorUseCases = {
-  create: new CreateColorUseCase(colorService),
-  findAll: new FindAllColorsUseCase(colorService),
-  findById: new FindColorByIdUseCase(colorService),
-  remove: new RemoveColorUseCase(colorService),
-  restore: new RestoreColorUseCase(colorService),
-  update: new UpdateColorUseCase(colorService),
+  // service instance
+  const colorService = new ColorServiceImpl($httpClient as AxiosHttpClient);
+  return {
+    create: new CreateColorUseCase(colorService),
+    findAll: new FindAllColorsUseCase(colorService),
+    findById: new FindColorByIdUseCase(colorService),
+    remove: new RemoveColorUseCase(colorService),
+    restore: new RestoreColorUseCase(colorService),
+    update: new UpdateColorUseCase(colorService),
+  };
 };

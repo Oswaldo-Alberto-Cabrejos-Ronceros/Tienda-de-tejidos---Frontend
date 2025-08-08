@@ -8,17 +8,19 @@ import { UpdateSizeUseCase } from "~/services/Size/application/UpdateSizeUseCase
 import { SizeServiceImpl } from "~/services/Size/infrastructure/SizeServiceImpl";
 import { AxiosHttpClient } from "~/services/HttpClient/infrastructure/AxiosHttpClient";
 
-// instancia del cliente http
-const axiosHttpClient = new AxiosHttpClient();
+export const useSizeUseCases = () => {
+  //http client instance
+  const { $httpClient } = useNuxtApp();
 
-// instancia del servicio
-const sizeService = new SizeServiceImpl(axiosHttpClient);
+  // instancia del servicio
+  const sizeService = new SizeServiceImpl($httpClient as AxiosHttpClient);
 
-export const sizeUseCases = {
-  create: new CreateSizeUseCase(sizeService),
-  findAll: new FindAllSizesUseCase(sizeService),
-  findById: new FindSizeByIdUseCase(sizeService),
-  remove: new RemoveSizeUseCase(sizeService),
-  restore: new RestoreSizeUseCase(sizeService),
-  update: new UpdateSizeUseCase(sizeService),
+  return {
+    create: new CreateSizeUseCase(sizeService),
+    findAll: new FindAllSizesUseCase(sizeService),
+    findById: new FindSizeByIdUseCase(sizeService),
+    remove: new RemoveSizeUseCase(sizeService),
+    restore: new RestoreSizeUseCase(sizeService),
+    update: new UpdateSizeUseCase(sizeService),
+  };
 };

@@ -2,7 +2,7 @@
   <CartEmpty v-if="cartStore.isEmpty" />
   <div
     v-if="!cartStore.isEmpty"
-    class="flex flex-col w-screen items-center justify-center"
+    class="flex flex-col w-full items-center justify-center"
   >
     <!-- imagen superios -->
     <CartImagenAgredecimiento

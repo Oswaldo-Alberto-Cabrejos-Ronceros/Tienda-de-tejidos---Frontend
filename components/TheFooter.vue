@@ -1,5 +1,5 @@
 <template>
-  <div class="w-screen min-h-56 bg-pink-400 flex justify-center">
+  <div class="w-full min-h-56 bg-pink-400 flex justify-center">
     <div class="flex min-h-full w-[95%]">
       <div class="w-[60%] min-h-full flex flex-col p-4 justify-between">
         <div class="flex flex-col gap-1">

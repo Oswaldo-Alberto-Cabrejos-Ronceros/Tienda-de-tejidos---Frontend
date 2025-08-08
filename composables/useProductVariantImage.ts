@@ -1,10 +1,13 @@
-import { productVariantImageUseCases } from "~/dependency-injection/ProductVariantImageContainer";
+import { useProductVariantImageUseCases } from "~/dependency-injection/ProductVariantImageContainer";
 import { useAsyncHandler } from "./useAsyncHandler";
 import type { ProductVariantImageRequest } from "~/services/ProductVariantImage/domain/models/ProductVariantImageRequest";
 
 export const useProductVariantImage = () => {
   //get from useAsyncHandle
   const { loading, error, runUseCase } = useAsyncHandler();
+  //use cases
+  const productVariantImageUseCases = useProductVariantImageUseCases();
+
   //functions
   const create = async (
     productVariantImageRequest: ProductVariantImageRequest,

@@ -8,17 +8,18 @@ import { UpdateCategoryUseCase } from "~/services/Category/application/UpdateCat
 import { CategoryServiceImpl } from "~/services/Category/infrastructure/CategoryServiceImpl";
 import { AxiosHttpClient } from "~/services/HttpClient/infrastructure/AxiosHttpClient";
 
-//http client instance
-const axiosHttpClient = new AxiosHttpClient();
+export const useCategoryUseCases = () => {
+  //http client instance
+  const { $httpClient } = useNuxtApp();
 
-// service instance
-const categoryService = new CategoryServiceImpl(axiosHttpClient);
-
-export const categoryUseCases = {
-  create: new CreateCategoryUseCase(categoryService),
-  findAll: new FindAllCategoriesUseCase(categoryService),
-  findById: new FindCategoryByIdUseCase(categoryService),
-  remove: new RemoveCategoryUseCase(categoryService),
-  restore: new RestoreCategoryUseCase(categoryService),
-  update: new UpdateCategoryUseCase(categoryService),
+  // service instance
+  const categoryService = new CategoryServiceImpl($httpClient as AxiosHttpClient);
+  return {
+    create: new CreateCategoryUseCase(categoryService),
+    findAll: new FindAllCategoriesUseCase(categoryService),
+    findById: new FindCategoryByIdUseCase(categoryService),
+    remove: new RemoveCategoryUseCase(categoryService),
+    restore: new RestoreCategoryUseCase(categoryService),
+    update: new UpdateCategoryUseCase(categoryService),
+  };
 };

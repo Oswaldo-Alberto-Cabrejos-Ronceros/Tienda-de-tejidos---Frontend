@@ -9,18 +9,19 @@ import { FindUserByEmailUseCase } from "~/services/User/application/FindUserByEm
 import { UserServiceImpl } from "~/services/User/infrastructure/UserServiceImpl";
 import { AxiosHttpClient } from "~/services/HttpClient/infrastructure/AxiosHttpClient";
 
-// instancia del cliente http
-const axiosHttpClient = new AxiosHttpClient();
+export const useUserUseCases = () => {
+  //http client instance
+  const { $httpClient } = useNuxtApp();
+  // instancia del servicio
+  const userService = new UserServiceImpl($httpClient as AxiosHttpClient);
 
-// instancia del servicio
-const userService = new UserServiceImpl(axiosHttpClient);
-
-export const userUseCases = {
-  create: new CreateUserUseCase(userService),
-  findAll: new FindAllUsersUseCase(userService),
-  findById: new FindUserByIdUseCase(userService),
-  findByEmail: new FindUserByEmailUseCase(userService),
-  remove: new RemoveUserUseCase(userService),
-  restore: new RestoreUserUseCase(userService),
-  update: new UpdateUserUseCase(userService),
+  return {
+    create: new CreateUserUseCase(userService),
+    findAll: new FindAllUsersUseCase(userService),
+    findById: new FindUserByIdUseCase(userService),
+    findByEmail: new FindUserByEmailUseCase(userService),
+    remove: new RemoveUserUseCase(userService),
+    restore: new RestoreUserUseCase(userService),
+    update: new UpdateUserUseCase(userService),
+  };
 };

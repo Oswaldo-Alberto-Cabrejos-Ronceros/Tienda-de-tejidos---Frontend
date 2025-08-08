@@ -1,10 +1,13 @@
-import { categoryUseCases } from "~/dependency-injection/CategoryContainer";
+import { useCategoryUseCases } from "~/dependency-injection/CategoryContainer";
 import { useAsyncHandler } from "./useAsyncHandler";
 import type { CategoryRequest } from "~/services/Category/domain/models/CategoryRequest";
 
 export const useCategory = () => {
   //get from useAsyncHandle
   const { loading, error, runUseCase } = useAsyncHandler();
+  //use cases
+
+  const categoryUseCases = useCategoryUseCases();
 
   //instance of category store
   const categoryStore = useCategoryStore();

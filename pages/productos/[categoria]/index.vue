@@ -34,9 +34,9 @@ const { findByName } = useCategory();
 const categoryId = findByName(categoria as string);
 //productos de categoria--despues implementar solicitud api por store Producto
 const { findWithVariantsWithFilterAndPagination } = useProductt();
-onMounted(() => async () => {
+onMounted(async() => {
   productosPage.value = await findWithVariantsWithFilterAndPagination(
-    0,
+    1,
     20,
     categoryId
   );

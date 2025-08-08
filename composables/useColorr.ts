@@ -1,10 +1,13 @@
-import { colorUseCases } from "~/dependency-injection/ColorContainer";
+import { useColorUseCases } from "~/dependency-injection/ColorContainer";
 import { useAsyncHandler } from "./useAsyncHandler";
 import type { ColorRequest } from "~/services/Color/domain/models/ColorRequest";
 
 export const useColorr = () => {
   //get from useAsyncHandle
   const { loading, error, runUseCase } = useAsyncHandler();
+  //use cases
+  const colorUseCases = useColorUseCases();
+
   //functions
   const create = async (colorRequest: ColorRequest) => {
     return await runUseCase("createColor", () =>

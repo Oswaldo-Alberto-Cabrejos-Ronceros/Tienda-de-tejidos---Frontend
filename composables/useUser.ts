@@ -1,9 +1,11 @@
 import type { UserRequest } from "~/services/User/domain/models/UserRequest";
 import { useAsyncHandler } from "./useAsyncHandler";
-import { userUseCases } from "~/dependency-injection/UserContainer";
+import { useUserUseCases } from "~/dependency-injection/UserContainer";
 
 export const useUser = () => {
   const { loading, error, runUseCase } = useAsyncHandler();
+  //use cases
+  const userUseCases = useUserUseCases();
   const create = async (userRequest: UserRequest) => {
     return await runUseCase("createUser", () =>
       userUseCases.create.execute(userRequest)

@@ -25,17 +25,17 @@ const message={
   <!-- modal de confirmacion de cierre de sesion -->
    <ModalGeneric :show-value="showModalLogOut" :component="CardConfirm" :props="message" @update:show-value="handleModalLogOut" @send-element="handleLogOut"/>
   <!--Todo-->
-  <div class="w-screen h-auto min-h-screen flex flex-col p-0 m-0 bg-neutral-50">
+  <div class="w-full h-auto min-h-screen flex flex-col p-0 m-0 bg-neutral-50">
     <!--Header-Sup-->
-    <div class="w-screen h-auto flex flex-col min-h-24">
+    <div class="w-full h-auto flex flex-col min-h-24">
       <TheHeader @log-out="handleModalLogOut"/>
     </div>
     <!--Principal-->
-    <div class="w-screen h-auto flex-1 flex flex-col items-center pb-1">
+    <div class="w-full h-auto flex-1 flex flex-col items-center pb-1">
       <slot />
     </div>
     <!--Footer-Inf-->
-    <div class="w-screen h-auto min-h-56">
+    <div class="w-full h-auto min-h-56">
       <TheFooter/>
     </div>
   </div>

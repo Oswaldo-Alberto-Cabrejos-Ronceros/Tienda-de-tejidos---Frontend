@@ -1,10 +1,12 @@
 import type { ProductVariantRequest } from "~/services/ProductVariant/domain/models/ProductVariantRequest";
 import { useAsyncHandler } from "./useAsyncHandler";
-import { productVariantUseCases } from "~/dependency-injection/ProductVariantContainer";
+import { useProductVariantUseCases } from "~/dependency-injection/ProductVariantContainer";
 
 export const useProductVariant = () => {
   //get from useAsyncHandle
   const { loading, error, runUseCase } = useAsyncHandler();
+  //use cases
+  const productVariantUseCases = useProductVariantUseCases();
   //functions
   const create = async (productVariantRequest: ProductVariantRequest) => {
     return await runUseCase("createProductVariant", () =>

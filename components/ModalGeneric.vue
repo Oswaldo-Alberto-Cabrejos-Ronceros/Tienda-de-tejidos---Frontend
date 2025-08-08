@@ -1,7 +1,7 @@
 <template>
   <div
     v-if="showValue"
-    class="fixed flex flex-col items-center justify-center w-screen h-screen top-0 left-0 backdrop-blur-xs p-2 z-30"
+    class="fixed flex flex-col items-center justify-center w-full h-screen top-0 left-0 backdrop-blur-xs p-2 z-30"
     @click="closeModal"
   >
     <!-- renderizar componente dinamico -->

@@ -1,5 +1,5 @@
 <template>
-  <div class="fixed h-screen w-screen md:w-[30vw] min-w-sm flex flex-col bg-pink-400 top-0 left-0 z-40 items-start p-2 px-4 gap-2 text-neutral-50  " >
+  <div class="fixed h-screen w-full md:w-[30vw] min-w-sm flex flex-col bg-pink-400 top-0 left-0 z-40 items-start p-2 px-4 gap-2 text-neutral-50  " >
    <div class="w-full flex justify-end"><IconPrimary @click="emitirCerrar()" :icono="icono.icono" :color-hover="icono.colorHover" ></IconPrimary></div>
    <NuxtLink class="self-center" @click="emitirCerrar()" to="/"><h1 class="text-5xl font-daydream ">Artis</h1></NuxtLink>
    <div class="w-full"><SearchComponent/></div>

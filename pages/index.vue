@@ -3,7 +3,6 @@ import { faSeedling } from "@fortawesome/free-solid-svg-icons";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { faBagShopping } from "@fortawesome/free-solid-svg-icons";
 import { useProductStore } from "#imports";
-import type { Product } from "~/services/Product/domain/models/Product";
 import type { ProductWithVariants } from "~/services/Product/domain/models/ProductWithVariants";
 
 const imagenesCarrucel: string[] = [
@@ -11,48 +10,27 @@ const imagenesCarrucel: string[] = [
   "https://i.ytimg.com/vi/a-ClUHsq1mg/maxresdefault.jpg",
   "https://www.supergurumi.com/wp-content/uploads/2022/10/Patrones-de-Crochet-Amigurumi-Gratis.jpg",
 ];
-const categories: { image: string; name: string; rute: string }[] = [
-  {
-    image:
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Amigurumi-_Ping%C3%BCino_con_orejas_de_conejo.jpg/1200px-Amigurumi-_Ping%C3%BCino_con_orejas_de_conejo.jpg",
-    name: "Amigurimi",
-    rute: "/productos/Amigurimi",
-  },
-  {
-    image:
-      "https://www.katia.com/files/mod/6224/patron-tejer-punto-ganchillo-mujer-top-primavera-verano-katia-6224-1-g.jpg",
-    name: "Prendas",
-    rute: "/productos/Prendas",
-  },
-  {
-    image:
-      "https://www.weareknitters.es/cdn/shop/files/befana.jpg?v=1703104099&width=1100",
-    name: "Accesorios",
-    rute: "/productos/Accesorios",
-  },
-  {
-    image: "https://okdiario.com/coolthelifestyle/img/2023/07/04/graff.png",
-    name: "Joyas",
-    rute: "/productos/Joyas",
-  },
-  {
-    image:
-      "https://www.crochetisimo.com/wp-content/uploads/2018/04/29365844_604768666556616_7876383766418030592_n.jpg",
-    name: "Regalos",
-    rute: "/productos/Regalos",
-  },
-  {
-    image:
-      "https://www.crochetisimo.com/wp-content/uploads/2023/10/0e1d0cd3-e9ea-435c-816a-316fbe9c7fdd-827x1024.png",
-    name: "Pedidos",
-    rute: "/contacto",
-  },
-];
+const categories = ref<{ image: string; name: string; rute: string }[]>([]);
+
+const categoryPedido = {
+  image:
+    "https://www.crochetisimo.com/wp-content/uploads/2023/10/0e1d0cd3-e9ea-435c-816a-316fbe9c7fdd-827x1024.png",
+  name: "Pedidos",
+  rute: "/contacto",
+};
 //llamamos a la store Products; despues se llamara a la opcion obtener mas vendidos
-const productStore = useProductStore();
 const { findAllWithVariants } = useProductt();
+const { findAll } = useCategory();
 onMounted(async () => {
   productos.value = await findAllWithVariants();
+  const categoriesData = await findAll();
+  categories.value = categoriesData.map((category) => ({
+    image: category.imageUrl,
+    name: category.name,
+    rute: `/productos/${category.name}`,
+  }));
+  //add pedidos
+  categories.value.push(categoryPedido);
 });
 const productos = ref<ProductWithVariants[]>([]);
 const valores: { name: string; icon: any; description: string }[] = [
@@ -79,7 +57,7 @@ const valores: { name: string; icon: any; description: string }[] = [
 
 <template>
   <div
-    class="w-screen h-auto min-h-full flex flex-col items-center text-zinc-800"
+    class="w-full h-auto min-h-full flex flex-col items-center text-zinc-800"
   >
     <CarrucelPrincipal :imagenes="imagenesCarrucel" />
     <div class="w-[90%] flex items-center flex-col gap-6 py-6">

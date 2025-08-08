@@ -8,7 +8,7 @@
     @send-element="handleOut"
   />
   <!-- Todo -->
-  <div class="w-screen h-auto min-h-screen flex flex-row p-0 m-0 bg-neutral-50">
+  <div class="w-full h-auto min-h-screen flex flex-row p-0 m-0 bg-neutral-50">
     <!-- menu -->
     <AdminBarNav :items="items" />
     <!-- principal -->

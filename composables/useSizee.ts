@@ -1,11 +1,13 @@
 import type { Size } from "~/services/Size/domain/models/Size";
 import { useAsyncHandler } from "./useAsyncHandler";
-import { sizeUseCases } from "~/dependency-injection/SizeContainer";
+import { useSizeUseCases } from "~/dependency-injection/SizeContainer";
 import type { SizeRequest } from "~/services/Size/domain/models/SizeRequest";
 
 export const useSizee = () => {
   //get from useAsyncHandle
   const { loading, error, runUseCase } = useAsyncHandler();
+  //use cases
+  const sizeUseCases = useSizeUseCases();
   const create = async (sizeRequest: SizeRequest): Promise<Size> => {
     return await runUseCase("create", () =>
       sizeUseCases.create.execute(sizeRequest)

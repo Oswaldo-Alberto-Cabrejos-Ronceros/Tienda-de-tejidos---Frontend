@@ -7,18 +7,20 @@ import { AxiosHttpClient } from "~/services/HttpClient/infrastructure/AxiosHttpC
 import { DeleteProductVariantImageUseCase } from "~/services/ProductVariantImage/application/DeleteProductVariantImageUseCase";
 import { CreateProductVariantImageUseCase } from "~/services/ProductVariantImage/application/CreateProductVariantImageUseCase ";
 
-// instancia del cliente http
-const axiosHttpClient = new AxiosHttpClient();
-
-// instancia del servicio
-const productVariantImageService = new ProductVariantImageServiceImpl(
-  axiosHttpClient
-);
-
-export const productVariantImageUseCases = {
-  create: new CreateProductVariantImageUseCase(productVariantImageService),
-  findAll: new FindAllProductVariantImagesUseCase(productVariantImageService),
-  findById: new FindProductVariantImageByIdUseCase(productVariantImageService),
-  delete: new DeleteProductVariantImageUseCase(productVariantImageService),
-  update: new UpdateProductVariantImageUseCase(productVariantImageService),
+export const useProductVariantImageUseCases = () => {
+  //http client instance
+  const { $httpClient } = useNuxtApp();
+  // instancia del servicio
+  const productVariantImageService = new ProductVariantImageServiceImpl(
+    $httpClient as AxiosHttpClient
+  );
+  return {
+    create: new CreateProductVariantImageUseCase(productVariantImageService),
+    findAll: new FindAllProductVariantImagesUseCase(productVariantImageService),
+    findById: new FindProductVariantImageByIdUseCase(
+      productVariantImageService
+    ),
+    delete: new DeleteProductVariantImageUseCase(productVariantImageService),
+    update: new UpdateProductVariantImageUseCase(productVariantImageService),
+  };
 };

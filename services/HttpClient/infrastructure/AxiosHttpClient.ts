@@ -16,9 +16,7 @@ export class AxiosHttpClient implements HttpClient {
     };
   }
 
-  constructor() {
-    const config = useRuntimeConfig();
-    const baseURL = config.public.apiBase as string;
+  constructor(baseURL:string) {
     this.axiosInstance = axios.create({
       baseURL: baseURL,
       timeout: 5000,
