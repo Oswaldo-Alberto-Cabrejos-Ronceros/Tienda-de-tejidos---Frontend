@@ -1,7 +1,10 @@
 <script lang="ts" setup>
 //importamos componente de confirmacion para modal generic
 import CardConfirm from '~/components/CardConfirm.vue';
-
+//title for layout
+useHead({
+  title: "Artis",
+});
 //para modal logOut
 const showModalLogOut=ref(false);
 const handleModalLogOut=()=>{

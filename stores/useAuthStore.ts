@@ -36,6 +36,9 @@ export const useAuthStore = defineStore("auth", {
     },
     setUser(user: AuthResponse) {
       this.user = user;
+      user.role === "ADMINISTRADOR"
+        ? (this.$state.isAdmin = true)
+        : (this.$state.isAdmin = false);
       //saved in session storage
       sessionStorage.setItem("user", JSON.stringify(user));
     },

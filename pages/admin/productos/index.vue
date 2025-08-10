@@ -44,6 +44,6 @@ const CardAddTitle: string = "Producto";
 const productosPage = ref<Page<ProductWithVariants> | null>(null);
 const { findWithVariantsWithFilterAndPagination } = useProductt();
 onMounted(async () => {
-  productosPage.value = await findWithVariantsWithFilterAndPagination(0, 20, 1);
+  productosPage.value = await findWithVariantsWithFilterAndPagination(1, 20, 1);
 });
 </script>

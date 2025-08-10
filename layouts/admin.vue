@@ -26,12 +26,14 @@
 <script lang="ts" setup>
 import { faHouse } from "@fortawesome/free-solid-svg-icons";
 import { faTag } from "@fortawesome/free-solid-svg-icons";
-import { faBagShopping } from "@fortawesome/free-solid-svg-icons";
-import { faChartPie } from "@fortawesome/free-solid-svg-icons";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { faSwatchbook } from "@fortawesome/free-solid-svg-icons";
 //importamos componente para modal generic
 import CardConfirm from "~/components/CardConfirm.vue";
+//for title
+useHead({
+  title: "Artis",
+});
 const items: { icon: any; title: string; rute: string }[] = [
   {
     icon: faHouse,

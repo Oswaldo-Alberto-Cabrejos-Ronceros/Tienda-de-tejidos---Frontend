@@ -8,7 +8,6 @@
 //le aplicamos el layout admin
 import { useRoute } from "vue-router";
 //importamos async computed
-import { asyncComputed } from "@vueuse/core";
 import type { ProductWithVariants } from "~/services/Product/domain/models/ProductWithVariants";
 definePageMeta({
   layout: "admin",
