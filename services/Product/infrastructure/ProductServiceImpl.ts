@@ -5,13 +5,40 @@ import type { ProductRequest } from "../domain/models/ProductRequest";
 import type { ProductUpdateRequest } from "../domain/models/ProductUpdateRequest";
 import type { ProductService } from "../domain/services/ProductService";
 import type { Page } from "~/services/common/models/Page";
+import type { ProductWithVariantRequest } from "../domain/models/ProductWithVariantRequest";
 
 export class ProductServiceImpl implements ProductService {
   constructor(private readonly httpClient: HttpClient) {}
+
   private urlBase = "/product";
 
   async create(product: ProductRequest): Promise<Product> {
     const { data } = await this.httpClient.post<Product>(this.urlBase, product);
+    return data;
+  }
+
+  async createWithVariant(
+    productWithVariantRequest: ProductWithVariantRequest,
+    image: File
+  ): Promise<ProductWithVariants> {
+    if (!import.meta.client)
+      throw new Error("Esta funcion es solo para el cliente");
+    const formData = new FormData();
+    Object.entries(productWithVariantRequest).forEach(([key, value]) => {
+      if (value !== undefined) {
+        formData.append(key, value);
+      }
+    });
+    formData.append("image", image);
+    const { data } = await this.httpClient.post<ProductWithVariants>(
+      `${this.urlBase}/variant`,
+      formData,
+      {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      }
+    );
     return data;
   }
 

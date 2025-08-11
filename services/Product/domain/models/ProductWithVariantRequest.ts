@@ -1,0 +1,8 @@
+export interface ProductWithVariantRequest {
+  name: string;
+  description: string;
+  categoryId: number;
+  colorId: number;
+  sizeId: number;
+  price: number;
+}
