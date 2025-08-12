@@ -2,7 +2,7 @@
   <NuxtLink
     :to="
       isAdmin
-        ? `/admin/productos/${categoryName}/${product.id}`
+        ? `/admin/productos/${product.id}`
         : `/productos/${categoryName}/${product.id}`
     "
   >

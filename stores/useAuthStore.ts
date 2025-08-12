@@ -22,7 +22,7 @@ export const useAuthStore = defineStore("auth", {
       const user = sessionStorage.getItem("user");
       if (user) {
         try {
-          this.user = JSON.parse(user) as AuthResponse;
+          this.setUser(JSON.parse(user) as AuthResponse);
         } catch (error) {
           console.error(
             "Error al parsear el usuario desde sessionStorage",
@@ -44,6 +44,7 @@ export const useAuthStore = defineStore("auth", {
     },
     cleanUser() {
       this.user = null;
+      this.isAdmin = null;
       sessionStorage.removeItem("user");
     },
     //registro
@@ -114,31 +115,7 @@ export const useAuthStore = defineStore("auth", {
     },
     //cerrar sesion
     async logout() {
-      const config = useRuntimeConfig();
-      //eliminamos las coockies
-      const userStore = useUserStore();
-      //limpiamos session storange
-      userStore.cleanUserData();
-      //eliminamos cookies
-      //analizar si se usa fetch o instancia de axios
-      try {
-        const { message } = await $fetch<{ message: string }>(
-          `${config.public.apiBase}/auth/logout/`,
-          {
-            method: "POST",
-            credentials: "include",
-          }
-        );
-        console.log(message);
-      } catch (error) {
-        console.log(
-          "Error al cerrar sesion, no se encontraron las cookies",
-          error
-        );
-      }
-      //para admin
-      this.removeIsAdmin();
-      //redirigimos al login
+      this.cleanUser();
       navigateTo("/");
     },
     async setIsAdmin() {
@@ -165,8 +142,6 @@ export const useAuthStore = defineStore("auth", {
     },
     //para remover isAdmin
     removeIsAdmin() {
-      const isAdmin = useCookie("is_admin");
-      isAdmin.value = null;
       this.isAdmin = null;
     },
   },

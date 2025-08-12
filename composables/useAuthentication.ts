@@ -25,6 +25,13 @@ export const useAuthentication = () => {
     );
   };
 
+  const getIsAdmin = (): boolean => {
+    if (import.meta.client) {
+      authenticationStore.recoverUserFromSession();
+    }
+    return authenticationStore.isAdmin ?? false;
+  };
+
   //for get userId
   const getUserId = () => {
     if (!authenticationStore.userId) {
@@ -47,6 +54,7 @@ export const useAuthentication = () => {
     logout,
     getUserId,
     getRole,
+    getIsAdmin,
     loading,
     error,
   };

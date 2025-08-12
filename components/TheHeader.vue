@@ -32,7 +32,7 @@
         /></NuxtLink>
         <!-- boton para cerrar sesion -->
         <IconPrimary
-          v-if="userStore.isAuthenticated"
+          v-if="isAdmin"
           :icono="iconoLogout.icon"
           @click="iconoLogout.onClick"
         />
@@ -48,38 +48,20 @@ import { NuxtLink } from "#components";
 import {
   faSearch,
   faCircleUser,
-  faShoppingBag,
   faRightFromBracket,
 } from "@fortawesome/free-solid-svg-icons";
-//logica para saber si hay un usuario autenticado
-const userStore = useUserStore();
-//authStore
-const authStore = useAuthStore();
-onMounted(async () => {
-  userStore.loadFromSession();
-  //para saber si es admin o no
-  if (userStore.isAuthenticated) {
-    authStore.recoverIsAdmin();
-    if (authStore.isAdmin == null) {
-      await authStore.setIsAdmin();
-    }
-  }
-});
 
+onMounted(() => {
+  const { getIsAdmin } = useAuthentication();
+  isAdmin.value = getIsAdmin();
+});
+//por mientras solo existira un usuario admin
 const userUrl = computed(() =>
-  userStore.isAuthenticated ? "/user/profile" : "/auth/login"
+  isAdmin.value ? "/user/profile" : "/auth/login"
 );
 
 //boolean para saber si es admin
-const isAdmin = asyncComputed(async () => {
-  if (userStore.isAuthenticated) {
-    authStore.recoverIsAdmin();
-    if (authStore.isAdmin == null) {
-      await authStore.setIsAdmin();
-    }
-    return authStore.isAdmin;
-  }
-});
+const isAdmin = ref<boolean>(false);
 const iconos = computed(() => [
   { icon: faCircleUser, rute: userUrl.value },
   // { icon: faShoppingBag, rute: "/cart" },
