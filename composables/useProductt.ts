@@ -1,6 +1,7 @@
 import type { ProductRequest } from "~/services/Product/domain/models/ProductRequest";
 import { useAsyncHandler } from "./useAsyncHandler";
 import { useProductUseCases } from "~/dependency-injection/ProductContainer";
+import type { ProductWithVariantSchema } from "~/interfaces/ProductWithVariantSchema";
 
 export const useProductt = () => {
   //get from useAsyncHandle
@@ -13,6 +14,25 @@ export const useProductt = () => {
       productUseCases.create.execute(productRequest)
     );
   };
+
+  const createWithVariant = async (
+    productWithVariantSchema: ProductWithVariantSchema
+  ) => {
+    return await runUseCase("createProductWithVariant", () =>
+      productUseCases.createWithVariant.execute(
+        {
+          name: productWithVariantSchema.name,
+          description: productWithVariantSchema.description,
+          categoryId: productWithVariantSchema.categoryId,
+          colorId: productWithVariantSchema.colorId,
+          sizeId: productWithVariantSchema.sizeId,
+          price: productWithVariantSchema.price,
+        },
+        productWithVariantSchema.image as File
+      )
+    );
+  };
+
   const findAll = async () => {
     return await runUseCase("findAllProducts", () =>
       productUseCases.findAll.execute()
@@ -74,6 +94,7 @@ export const useProductt = () => {
   };
   return {
     create,
+    createWithVariant,
     findAll,
     findById,
     update,

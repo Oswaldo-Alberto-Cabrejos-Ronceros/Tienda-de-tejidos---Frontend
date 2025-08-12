@@ -11,6 +11,7 @@ import { UpdateProductUseCase } from "~/services/Product/application/UpdateProdu
 
 import { ProductServiceImpl } from "~/services/Product/infrastructure/ProductServiceImpl";
 import { AxiosHttpClient } from "~/services/HttpClient/infrastructure/AxiosHttpClient";
+import { CreateProductWithVariantUseCase } from "~/services/Product/application/CreateProductWithVariantUseCase";
 
 //http client instance
 
@@ -21,6 +22,7 @@ export const useProductUseCases = () => {
   const productService = new ProductServiceImpl($httpClient as AxiosHttpClient);
   return {
     create: new CreateProductUseCase(productService),
+    createWithVariant: new CreateProductWithVariantUseCase(productService),
     findAll: new FindAllProductsUseCase(productService),
     findAllWithVariants: new FindAllProductsWithVariantsUseCase(productService),
     findById: new FindProductByIdUseCase(productService),
