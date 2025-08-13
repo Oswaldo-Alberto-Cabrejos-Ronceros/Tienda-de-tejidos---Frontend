@@ -6,7 +6,7 @@
     </h2>
     <!-- barnav -->
      <nav class="flex flex-col">
-      <AdminBarNavItem v-for="item in items" :icon="item.icon" :title="item.title" :rute="item.rute"/>
+      <AdminBarNavItem @click="closeMenu" v-for="item in items" :icon="item.icon" :title="item.title" :rute="item.rute"/>
      </nav>
   </div>
 </template>
@@ -15,4 +15,8 @@
 defineProps<{
   items:{icon:any,title:string,rute:string}[]
 }>()
+const emit =defineEmits(['close-menu'])
+const closeMenu=()=>{
+  emit("close-menu");
+}
 </script>

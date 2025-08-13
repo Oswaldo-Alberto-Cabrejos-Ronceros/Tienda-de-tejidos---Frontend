@@ -11,7 +11,7 @@
       <FiltersComponent /> <OrdenarComponent />
     </div>
     <!-- seccion de productos -->
-    <div class="w-full h-auto grid grid-cols-1  md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 py-4">
+    <div class="w-full h-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 py-4">
       <div class="flex items-center justify-center">
         <NuxtLink to="/admin/productos/agregar"
           ><AdminCartAdd :title="CardAddTitle"
