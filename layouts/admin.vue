@@ -16,7 +16,7 @@
       <!-- header -->
       <AdminHeader @show-out="handleModalConfirmOut" />
       <!-- Slot de contenido principal -->
-      <div class="h-auto flex-1 flex flex-col items-center py-1 px-2">
+      <div class="h-auto flex-1 flex flex-col items-center py-1 px-2 max-w-full">
         <slot />
       </div>
     </div>
@@ -35,11 +35,11 @@ useHead({
   title: "Artis",
 });
 const items: { icon: any; title: string; rute: string }[] = [
-  {
+  /*  {
     icon: faHouse,
     title: "Inicio",
     rute: "",
-  },
+  },*/
   {
     icon: faTag,
     title: "Productos",

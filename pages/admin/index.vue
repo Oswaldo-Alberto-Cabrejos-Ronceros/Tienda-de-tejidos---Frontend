@@ -6,10 +6,8 @@
 
 <script lang="ts" setup>
 definePageMeta({
-  layout:'admin'
-})
+  layout: "admin",
+  middleware: "admin-redirect",
+});
 </script>
 
-<style>
-
-</style>

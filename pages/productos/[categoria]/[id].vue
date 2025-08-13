@@ -16,7 +16,8 @@
     </p>
     <ProductCarrucel :products="products" />
     <!-- seccion mas opciones -->
-    <p class="text-xl">Explora más opciones</p>
+    <!-- 
+        <p class="text-xl">Explora más opciones</p>
     <div class="flex flex-col sm:flex-row justify-center gap-3">
       <div v-for="buttonTitle in buttonsOpcionesTitles" class="h-full w-32">
         <ButtonPrimary
@@ -28,6 +29,7 @@
         />
       </div>
     </div>
+     -->
   </div>
 </template>
 

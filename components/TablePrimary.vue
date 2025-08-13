@@ -1,8 +1,8 @@
 <template>
-  <table class="w-max text-zinc-800 text-center table-fixed">
+  <table class="w-max max-w-full text-zinc-800 text-center table-fixed">
     <thead> 
       <tr class="px-4 border-solid border-neutral-700 border-b">
-        <th v-for="(title, index) in titles" :key="index" class="text-xl font-semibold px-4 py-1">{{ title }}</th>
+        <th v-for="(title, index) in titles" :key="index" class="text-lg font-semibold px-4 py-1">{{ title }}</th>
       </tr>
     </thead>
     <tbody>

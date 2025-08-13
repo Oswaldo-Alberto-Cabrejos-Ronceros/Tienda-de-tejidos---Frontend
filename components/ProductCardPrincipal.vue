@@ -4,7 +4,7 @@
     class="w-full flex gap-3 text-zinc-800 flex-col md:flex-row"
   >
     <!-- producto imagenes -->
-    <div class="flex gap-1 w-full md:w-[60%]">
+    <div class="flex gap-1 w-full md:w-[60%] sm:flex-row flex-col-reverse">
       <div class="flex flex-1 flex-col gap-1">
         <ImageCardSmall
           v-for="(image, id) in product.variants[0].images"
@@ -25,7 +25,7 @@
     <div class="w-full md:w-[40%] flex flex-col gap-4">
       <div class="flex items-center gap-1">
         <p class="text-2xl font-semibold">{{ product.name }}</p>
-        <IconPrimary
+        <!--         <IconPrimary
           v-if="!isAdmin && !isFavorite"
           @click="isAuthenticated ? handleAddFavoriteProduct() : goToLogin()"
           :icono="iconHeart.icon"
@@ -38,16 +38,15 @@
           :icono="iconHeartFavorite.icon"
           :color="iconHeartFavorite.color"
           :color-hover="iconHeartFavorite.colorHover"
-        />
+        /> -->
       </div>
       <p class="text-2xl font-bold">S/{{ " " + product.variants[0].price }}</p>
-      <SelectComponent
+      <!--       <SelectComponent
         v-if="!isAdmin"
         :name="cantidadSelect.name"
         :options="cantidadSelect.options"
         v-model="quantity"
       />
-      <!-- button  -->
       <ButtonPrimary
         v-if="!isAdmin"
         @click="emitirComprar(product)"
@@ -55,7 +54,8 @@
         :color-bg="infoButton.colorBg"
         :color-hover="infoButton.colorHover"
         :rounded="infoButton.rounded"
-      />
+      /> -->
+
       <!-- caracteristicas -->
       <p class="text-xl border-solid border-zinc-800 border-b w-full py-1">
         Información

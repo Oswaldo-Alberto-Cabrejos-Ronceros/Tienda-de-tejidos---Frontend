@@ -2,7 +2,7 @@
   <form
     class="flex flex-1 flex-col w-[40vw] min-w-56 max-w-96 text-zinc-800 justify-center items-center gap-4 justify-self-center"
   >
-    <h3 class="text-3xl font-semibold">Restablecer Contraseña</h3>
+    <h3 class="text-2xl font-semibold">Restablecer Contraseña</h3>
     <p class="text-base self-start">Ingrese el correo con el que se registro</p>
     <InputPrimary
       :name="input.name"

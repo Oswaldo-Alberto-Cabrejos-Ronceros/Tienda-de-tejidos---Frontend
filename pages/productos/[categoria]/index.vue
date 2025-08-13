@@ -1,6 +1,6 @@
 <template>
   <div class="w-full flex flex-col items-center justify-center py-1 pb-4">
-    <h3 class="text-3xl font-semibold">{{ categoria }}</h3>
+    <h3 class="text-2xl font-semibold">{{ categoria }}</h3>
     <div class="text-zinc-800 w-[90%] flex flex-col gap-6">
       <div class="w-full flex justify-between pt-1">
         <FiltersComponent/><OrdenarComponent />

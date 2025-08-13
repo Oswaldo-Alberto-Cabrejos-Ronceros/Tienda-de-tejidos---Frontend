@@ -60,7 +60,7 @@ const valores: { name: string; icon: any; description: string }[] = [
   >
     <CarrucelPrincipal :imagenes="imagenesCarrucel" />
     <div class="w-[90%] flex items-center flex-col gap-6 py-6">
-      <h3 class="text-3xl font-semibold">Mundo lleno de creatividad</h3>
+      <h3 class="text-2xl font-semibold">Mundo lleno de creatividad</h3>
       <p class="text-base">
         Lorem ipsum dolor sit amet consectetur adipiscing elit vestibulum,
         fringilla primis viverra urna sollicitudin semper venenatis, aliquet
@@ -82,9 +82,9 @@ const valores: { name: string; icon: any; description: string }[] = [
           />
         </div>
       </div>
-      <h3 class="text-3xl font-semibold font-daydream">Lo más vendido</h3>
+      <h3 class="text-2xl font-semibold font-daydream">Lo más vendido</h3>
       <ProductCarrucel :products="productos" />
-      <h3 class="text-3xl font-semibold font-daydream">Compra en Artis</h3>
+      <h3 class="text-2xl font-semibold font-daydream">Compra en Artis</h3>
       <ValorCarrucel :valores="valores" />
     </div>
   </div>

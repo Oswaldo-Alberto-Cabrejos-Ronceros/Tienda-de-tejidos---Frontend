@@ -1,7 +1,7 @@
 <template>
   <div class="flex flex-col text-zinc-800 w-[90%] gap-2 pt-2">
     <div v-if="usuario" class="flex gap-2">
-      <h3 class="text-3xl font-semibold">
+      <h3 class="text-2xl font-semibold">
         {{ `${usuario.name} ${usuario.lastname}` }}
       </h3>
       <IconPrimary

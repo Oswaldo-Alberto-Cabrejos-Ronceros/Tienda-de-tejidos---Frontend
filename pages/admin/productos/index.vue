@@ -3,7 +3,7 @@
   <div class="w-full h-auto flex flex-col py-1 px-2">
     <!-- parte superios de titulo y busqueda -->
     <div class="w-full flex items-center justify-start py-1 gap-4">
-      <h3 class="text-3xl font-semibold text-zinc-800">Productos</h3>
+      <h3 class="text-2xl font-semibold text-zinc-800">Productos</h3>
       <SearchComponent />
     </div>
     <!-- seccion de filtros -->
@@ -11,7 +11,7 @@
       <FiltersComponent /> <OrdenarComponent />
     </div>
     <!-- seccion de productos -->
-    <div class="w-full h-auto grid grid-cols-3 py-4">
+    <div class="w-full h-auto grid grid-cols-1  md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 py-4">
       <div class="flex items-center justify-center">
         <NuxtLink to="/admin/productos/agregar"
           ><AdminCartAdd :title="CardAddTitle"

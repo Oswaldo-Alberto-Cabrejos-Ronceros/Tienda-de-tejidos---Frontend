@@ -15,7 +15,7 @@
     @update:show-value="handleModalColor"
   />
   <div class="w-full h-auto flex flex-col py-1 px-2">
-    <h3 class="text-3xl font-semibold py-1 text-zinc-800">Tallas y colores</h3>
+    <h3 class="text-2xl font-semibold py-1 text-zinc-800">Tallas y colores</h3>
     <div class="w-full flex">
       <div
         class="w-1/2 h-auto flex justify-start items-center flex-col flex-1 gap-4"

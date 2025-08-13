@@ -1,6 +1,6 @@
 <template>
   <div class="w-[90%] flex flex-col text-zinc-800 py-4">
-    <h3 class="text-3xl font-semibold">Contactanos</h3>
+    <h3 class="text-2xl font-semibold">Contactanos</h3>
     <p class="text-xl">Para modelos personalizados o cualquier informacion</p>
     <div class="w-full flex flex-col md:flex-row items-center justify-center gap-12 py-6">
       <div class="flex flex-col items-center justify-center gap-3" v-for="contacto in contactos">
