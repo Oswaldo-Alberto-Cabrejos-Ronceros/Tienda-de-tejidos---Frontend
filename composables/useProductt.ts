@@ -24,6 +24,7 @@ export const useProductt = () => {
           name: productWithVariantSchema.name,
           description: productWithVariantSchema.description,
           categoryId: productWithVariantSchema.categoryId,
+          gender: productWithVariantSchema.gender,
           colorId: productWithVariantSchema.colorId,
           sizeId: productWithVariantSchema.sizeId,
           price: productWithVariantSchema.price,

@@ -54,7 +54,7 @@
           />
         </div>
       </div>
-      <p>Variant</p>
+      <p>Información de la variante</p>
       <div
         v-for="select in selectVariant"
         class="flex items-center w-auto min-w-[800px]"
@@ -214,6 +214,11 @@ const selectsAgregar = computed<
     title: "Categoria",
     options: categoriesOptions.value,
   },
+  {
+    name: "gender",
+    title: "Género",
+    options: genderOptions,
+  },
 ]);
 
 //for select variant
@@ -236,10 +241,17 @@ const selectVariant = computed<
   },
 ]);
 
+const genderOptions = [
+  { value: "Unisex", label: "Unisex" },
+  { value: "Femenino", label: "Femenino" },
+  { value: "Masculino", label: "Masculino" },
+];
+
 //reactive de formulario
 const formAgregar = reactive<ProductWithVariantSchema>({
   name: "",
   categoryId: 1,
+  gender: "Unisex",
   description: "",
   colorId: 1,
   sizeId: 1,

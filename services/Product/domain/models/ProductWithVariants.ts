@@ -1,8 +1,9 @@
-export interface ProductWithVariants{
+export interface ProductWithVariants {
   id: number;
   name: string;
   description: string;
   categoryId: number;
+  gender: string;
   variants: {
     id: number;
     color: {
