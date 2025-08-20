@@ -5,7 +5,7 @@
   >
     <!-- producto imagenes -->
     <div class="flex gap-1 w-full md:w-[60%] sm:flex-row flex-col-reverse">
-      <div class="flex flex-1 flex-col gap-1">
+      <div class="flex flex-col gap-1">
         <ImageCardSmall
           v-for="(image, id) in product.variants[0].images"
           :id="id"
@@ -14,7 +14,7 @@
           @change-image="changeImage"
         />
       </div>
-      <div class="flex items-center">
+      <div class="flex items-center flex-1">
         <ImageCardLarge
           :name="product.name"
           :image="product.variants[0].images[indexImage]"
@@ -57,6 +57,14 @@
       /> -->
 
       <!-- caracteristicas -->
+             <ButtonPrimary
+        v-if="!isAdmin"
+        @click="emitConsultar(product)"
+        :title="infoButton.title"
+        :color-bg="infoButton.colorBg"
+        :color-hover="infoButton.colorHover"
+        :rounded="infoButton.rounded"
+      />
       <p class="text-xl border-solid border-zinc-800 border-b w-full py-1">
         Información
       </p>
@@ -122,7 +130,7 @@ const infoButton: {
   colorHover: string;
   rounded: string;
 } = {
-  title: "Comprar",
+  title: "Consultar",
   colorBg: "pink-400",
   colorHover: "pink-600",
   rounded: "rounded-xl",
@@ -135,9 +143,13 @@ const changeImage = (index: number) => {
 //referencia para cantidad
 const quantity = ref("1");
 //emision de evento para compra
-const emit = defineEmits(["comprar"]);
+const emit = defineEmits(["comprar", "consultar"]);
 const emitirComprar = (product: ProductWithVariants) => {
   emit("comprar", product, Number(quantity.value));
+};
+//for emit consultar
+const emitConsultar = (product: ProductWithVariants) => {
+  emit("consultar", product);
 };
 //funciones para el boton favorito
 const goToLogin = () => {

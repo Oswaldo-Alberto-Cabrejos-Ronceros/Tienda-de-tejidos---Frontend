@@ -7,7 +7,7 @@
   />
   <div class="w-[90%] flex items-start flex-col py-4 gap-6 text-zinc-800">
     <!-- Carta principal de producto -->
-    <ProductCardPrincipal :product="product" @comprar="agregarCarrito" />
+    <ProductCardPrincipal :product="product" @consultar="consultar" />
     <!-- carrucel de productos similares -->
     <p
       class="text-2xl font-semibold border-solid border-zinc-800 border-b w-full py-1"
@@ -85,5 +85,12 @@ const agregarCarrito = (product: Producto, quantity: number) => {
   setTimeout(() => {
     handleShowModal();
   }, 3000);
+};
+const { findNameById } = useCategory();
+const consultar = (product: ProductWithVariants) => {
+  const categoryName = findNameById(product.categoryId);
+  const message = `Quiero consultar sobre el producto: ${categoryName} - ${product.name}`;
+  const url = `https://wa.me/51902268600?text=${encodeURIComponent(message)}`;
+  window.open(url, "_blank");
 };
 </script>

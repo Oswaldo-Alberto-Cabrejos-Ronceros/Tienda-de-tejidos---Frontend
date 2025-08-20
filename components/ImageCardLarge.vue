@@ -1,6 +1,6 @@
 <template>
-  <div  class="flex w-full">
-    <img class="w-full object-cover" :src="props.image" :alt="props.name">
+  <div  class="flex w-full items-center justify-center">
+    <img class="w-full object-cover max-h-[80vh]" :src="props.image" :alt="props.name">
   </div>
 </template>
 

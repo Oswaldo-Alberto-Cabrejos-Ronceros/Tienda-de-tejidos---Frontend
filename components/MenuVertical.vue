@@ -12,7 +12,7 @@
     <NuxtLink class="self-center" @click="emitirCerrar()" to="/"
       ><h1 class="text-5xl font-daydream">Artis</h1></NuxtLink
     >
-    <div class="w-full"><SearchComponent /></div>
+    <div class="w-full"><SearchComponent @search="goToSearch"/></div>
     <p class="text-2xl font-light font-daydream">Diseños frase frase</p>
     <BarNavVertical @cerrar="emitirCerrar()" />
     <NuxtLink
@@ -69,4 +69,9 @@ const iconosRedesSociales: { icon: any; rute: string }[] = [
 ];
 //saber si el usuario esta autenticado
 const userStore = useUserStore();
+//for search
+const goToSearch = (search: string) => {
+  navigateTo("/productos/search/" + search);
+  emitirCerrar();
+};
 </script>

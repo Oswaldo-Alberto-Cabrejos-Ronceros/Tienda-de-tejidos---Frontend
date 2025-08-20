@@ -19,15 +19,23 @@ export const useCategory = () => {
     );
   };
   const findAll = async () => {
-    return await runUseCase("findAllCategories", () =>
+    const categories = await runUseCase("findAllCategories", () =>
       categoryUseCases.findAll.execute()
     );
+    categoryStore.categories = categories;
+    return categories;
   };
   const findById = async (id: number) => {
-    return await runUseCase("findCategoryById", () =>
+    await runUseCase("findCategoryById", () =>
       categoryUseCases.findById.execute(id)
     );
   };
+
+  //get categoryNamebyId
+  const findNameById = (id: number) => {
+    return categoryStore.searchCategoryById(id);
+  };
+
   const update = async (
     id: number,
     categoryRequest: CategoryRequest,
@@ -61,6 +69,7 @@ export const useCategory = () => {
     remove,
     restore,
     findByName,
+    findNameById,
     loading,
     error,
   };

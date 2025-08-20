@@ -85,7 +85,6 @@ const informacionItemts: { name: string; rute: string }[] = [
   { name: "Sobre Nosotros", rute: "/nosotros" },
   { name: "Términos y condiciones", rute: "/terminos" },
   { name: "Preguntas Frecuentes", rute: "/preguntas" },
-  { name: "Métodos de pago", rute: "metodos-pago" },
   { name: "Contacto", rute: "contacto" },
 ];
 //varible del v-model

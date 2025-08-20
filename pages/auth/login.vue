@@ -80,7 +80,7 @@ const submitLogin = async () => {
   try {
     const authResponse = await login(formLogin);
     authResponse.role === "ADMINISTRADOR"
-      ? navigateTo("/admin")
+      ? navigateTo("/admin/")
       : navigateTo("/");
   } catch (error) {
     console.error("Error al iniciar sesión:", error);

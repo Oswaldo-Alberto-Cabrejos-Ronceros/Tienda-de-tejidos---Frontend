@@ -33,7 +33,7 @@ const contactos: {
   {
     icon: faPhoneFlip,
     title: "Celular",
-    content: "999999999",
+    content: "902268600",
     colorBg: "pink-500",
     colorHover: "pink-600",
     url:"tel:+51902268600"
@@ -49,12 +49,10 @@ const contactos: {
   {
     icon: faWhatsapp,
     title: "Whatsapp",
-    content: "999999999",
+    content: "902268600",
     colorBg: "lime-400",
     colorHover: "lime-500",
     url:"https://wa.me/51902268600?text=Quiero%20informaci%C3%B3n%20sobre%20un%20producto"
   },
 ];
 </script>
-
-<style></style>
