@@ -15,7 +15,7 @@
         >
           <ProductCardPrimary
             :product="producto"
-            :category-name="getCategoryNameById(producto.id)"
+            :category-name="getCategoryNameById(producto.categoryId)"
           />
         </div>
       </div>

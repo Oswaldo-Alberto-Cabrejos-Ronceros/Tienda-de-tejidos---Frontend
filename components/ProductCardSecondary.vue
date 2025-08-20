@@ -22,12 +22,6 @@
 import type { ProductWithVariants } from "~/services/Product/domain/models/ProductWithVariants";
 const props = defineProps<{
   product: ProductWithVariants;
+  categoryName: string;
 }>();
-//obtenemos nombre de categoria
-const { findById } = useCategory();
-onMounted(async () => {
-  categoryName.value = (await findById(props.product.categoryId)).name;
-});
-const categoryName = ref<string>("");
 </script>
-

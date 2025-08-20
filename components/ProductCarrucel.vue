@@ -1,6 +1,8 @@
 <template>
   <div class="w-full h-auto flex flex-col">
-    <p class="text-xl text-zinc-800 self-center" v-if="!products.length">No hay Productos</p>
+    <p class="text-xl text-zinc-800 self-center" v-if="!products.length">
+      No hay Productos
+    </p>
     <!-- Carrusel de productos -->
     <div class="w-full overflow-hidden relative">
       <div
@@ -8,16 +10,31 @@
         :style="{ transform: `translateX(-${currentPage * 100}%)` }"
       >
         <!-- Secciones del carrusel -->
-        <div v-for="(chunk, index) in chunkedProducts" :key="index" class="min-w-full flex gap-4">
-          <ProductCardSecondary v-for="(product, id) in chunk" :key="id" :product="product" />
+        <div
+          v-for="(chunk, index) in chunkedProducts"
+          :key="index"
+          class="min-w-full flex gap-4"
+        >
+          <ProductCardSecondary
+            v-for="(product, id) in chunk"
+            :key="id"
+            :product="product"
+            :category-name="getCategoryNameById(product.categoryId)"
+          />
         </div>
       </div>
     </div>
 
     <!-- Botones de navegación -->
     <div class="w-full p-2 flex items-center justify-center gap-2">
-      <ButtonCarrucel v-for="n in quantityButtonsProducts" :key="n" @click="currentPage = n - 1"
-        :class="{'bg-gray-500': currentPage === n - 1, 'bg-gray-300': currentPage !== n - 1}"
+      <ButtonCarrucel
+        v-for="n in quantityButtonsProducts"
+        :key="n"
+        @click="currentPage = n - 1"
+        :class="{
+          'bg-gray-500': currentPage === n - 1,
+          'bg-gray-300': currentPage !== n - 1,
+        }"
       />
     </div>
   </div>
@@ -34,7 +51,9 @@ const props = defineProps<{ products: ProductWithVariants[] }>();
 const currentPage = ref(0);
 
 // Calcular cantidad de botones (número de páginas)
-const quantityButtonsProducts = computed(() => Math.ceil(props.products.length / 5));
+const quantityButtonsProducts = computed(() =>
+  Math.ceil(props.products.length / 5)
+);
 
 // Dividir los productos en grupos de 5
 const chunkedProducts = computed(() => {
@@ -43,6 +62,12 @@ const chunkedProducts = computed(() => {
     props.products.slice(i * chunkSize, (i + 1) * chunkSize)
   );
 });
+
+//for get category name
+const { findNameById } = useCategory();
+const getCategoryNameById = (id: number) => {
+  return findNameById(id) ?? "";
+};
 </script>
 
 <style scoped>
