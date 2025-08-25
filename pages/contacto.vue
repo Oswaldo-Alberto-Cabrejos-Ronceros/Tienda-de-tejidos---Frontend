@@ -1,6 +1,6 @@
 <template>
   <div class="w-[90%] flex flex-col text-zinc-800 py-4">
-    <h3 class="text-3xl font-semibold">Contactanos</h3>
+    <h3 class="text-2xl font-semibold">Contactanos</h3>
     <p class="text-xl">Para modelos personalizados o cualquier informacion</p>
     <div class="w-full flex flex-col md:flex-row items-center justify-center gap-12 py-6">
       <div class="flex flex-col items-center justify-center gap-3" v-for="contacto in contactos">
@@ -33,7 +33,7 @@ const contactos: {
   {
     icon: faPhoneFlip,
     title: "Celular",
-    content: "999999999",
+    content: "902268600",
     colorBg: "pink-500",
     colorHover: "pink-600",
     url:"tel:+51902268600"
@@ -49,12 +49,10 @@ const contactos: {
   {
     icon: faWhatsapp,
     title: "Whatsapp",
-    content: "999999999",
+    content: "902268600",
     colorBg: "lime-400",
     colorHover: "lime-500",
     url:"https://wa.me/51902268600?text=Quiero%20informaci%C3%B3n%20sobre%20un%20producto"
   },
 ];
 </script>
-
-<style></style>

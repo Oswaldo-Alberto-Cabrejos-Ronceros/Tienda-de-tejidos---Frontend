@@ -1,5 +1,5 @@
 <template>
-  <header class="w-screen h-auto flex items-center justify-center p-2 flex-col">
+  <header class="w-full h-auto flex items-center justify-center p-2 flex-col">
     <div
       class="h-auto w-[90%] flex items-center justify-center flex-row border-solid border-neutral-700 border-b py-3"
     >
@@ -22,16 +22,20 @@
       </div>
       <div class="flex gap-1">
         <!-- si es admin -->
-         <NuxtLink v-if="isAdmin" to="/admin/">
+        <NuxtLink v-if="isAdmin" to="/admin/">
           <div class="h-auto w-32">
-            <ButtonSecondary :title="buttonAdminTitle"/>
+            <ButtonSecondary :title="buttonAdminTitle" />
           </div>
-         </NuxtLink>
+        </NuxtLink>
         <NuxtLink v-for="icon of iconos" :to="icon.rute"
           ><IconPrimary :icono="icon.icon"
         /></NuxtLink>
         <!-- boton para cerrar sesion -->
-        <IconPrimary v-if="userStore.isAuthenticated" :icono="iconoLogout.icon" @click="iconoLogout.onClick"/>
+        <IconPrimary
+          v-if="isAdmin"
+          :icono="iconoLogout.icon"
+          @click="iconoLogout.onClick"
+        />
       </div>
     </div>
     <BarNav class="hidden sm:flex" />
@@ -44,57 +48,38 @@ import { NuxtLink } from "#components";
 import {
   faSearch,
   faCircleUser,
-  faShoppingBag,
-  faRightFromBracket
+  faRightFromBracket,
 } from "@fortawesome/free-solid-svg-icons";
-//logica para saber si hay un usuario autenticado
-const userStore = useUserStore();
-//authStore
-const authStore = useAuthStore();
-onMounted(async () => {
-  userStore.loadFromSession();
-  //para saber si es admin o no
-  if(userStore.isAuthenticated){
-    authStore.recoverIsAdmin();
-    if(authStore.isAdmin==null){
-      await authStore.setIsAdmin();
-    }
-  }
-});
 
+onMounted(() => {
+  const { getIsAdmin } = useAuthentication();
+  isAdmin.value = getIsAdmin();
+});
+//por mientras solo existira un usuario admin
 const userUrl = computed(() =>
-  userStore.isAuthenticated ? "/user/profile" : "/auth/login"
+  isAdmin.value ? "/user/profile" : "/auth/login"
 );
 
 //boolean para saber si es admin
-const isAdmin = asyncComputed( async()=>
-{if(userStore.isAuthenticated){
-    authStore.recoverIsAdmin();
-    if(authStore.isAdmin==null){
-      await authStore.setIsAdmin();
-    }
-    return authStore.isAdmin;
-  }}
-)
+const isAdmin = ref<boolean>(false);
 const iconos = computed(() => [
   { icon: faCircleUser, rute: userUrl.value },
-  { icon: faShoppingBag, rute: "/cart" },
+  // { icon: faShoppingBag, rute: "/cart" },
 ]);
-
 
 //agregar funcion de modal
 //emit
-const emit=defineEmits(['logOut']);
+const emit = defineEmits(["logOut"]);
 
-const handleLogout=()=>{
-  emit('logOut')
-}
+const handleLogout = () => {
+  emit("logOut");
+};
 
 //icono de logout
-const iconoLogout={
-  icon:faRightFromBracket,
-  onClick:handleLogout
-}
+const iconoLogout = {
+  icon: faRightFromBracket,
+  onClick: handleLogout,
+};
 const showBarVetical = ref(false);
 const barNavVerticalRef = ref<HTMLElement | null>(null);
 
@@ -128,7 +113,7 @@ const closeBarVetical = () => {
 // funcion para ejecutar despues de cerrar barra
 const afterLeave = () => {};
 //title button admin
-const buttonAdminTitle:string="Admin"
+const buttonAdminTitle: string = "Admin";
 </script>
 
 <style scoped>

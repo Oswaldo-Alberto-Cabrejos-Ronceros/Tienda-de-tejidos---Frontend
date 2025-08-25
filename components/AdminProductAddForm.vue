@@ -16,9 +16,9 @@
           <InputPrimary
             :icon="inputsAgregar[0].icon"
             :placeholder="inputsAgregar[0].placeholder"
-            :type="inputsAgregar[0].name"
+            :type="inputsAgregar[0].type"
             :name="inputsAgregar[0].name"
-            v-model="formAgregar[inputsAgregar[0].name] as keyof ProductRequest
+            v-model="formAgregar[inputsAgregar[0].name] as keyof ProductWithVariantRequest
             "
           />
         </div>
@@ -41,87 +41,54 @@
       </div>
 
       <div class="flex items-center w-auto min-w-[800px]">
-        <div class="flex items-start h-full w-auto min-w-28">
-          <p class="text-zing-800 text-xl">{{ inputsAgregar[1].title }}</p>
-        </div>
-
-        <div class="size-auto flex flex-col items-center gap-4">
-          <div
-            v-for="(image, index) in formAgregar.images"
-            class="size-auto flex items-center justify-center"
-          >
-            <div class="w-lg flex items-center justify-center">
-              <InputPrimary
-                :icon="inputsAgregar[1].icon"
-                :placeholder="inputsAgregar[1].placeholder"
-                :type="inputsAgregar[1].name"
-                :name="inputsAgregar[1].name"
-                v-model="formAgregar.images[index]"
-              />
-            </div>
-            <!-- boton eliminar -->
-            <div class="flex items-center justify-center">
-              <IconPrimary
-                v-if="index"
-                @click="eliminarImagenItem(index)"
-                :icono="iconDelete.icon"
-                :color="iconDelete.color"
-                :color-hover="iconDelete.coloHover"
-              />
-            </div>
-            <!-- boton agregar -->
-            <div class="flex items-center justify-center h-auto w-40 px-4">
-              <ButtonPrimary
-                v-if="index === formAgregar.images.length - 1"
-                @click.prevent="agregarImagenItem"
-                :color-bg="botonAddItem.colorBg"
-                :color-hover="botonAddItem.colorHover"
-                :title="botonAddItem.title"
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="flex items-center w-auto min-w-[800px]">
-        <div class="flex items-start h-full w-auto min-w-28">
+        <div class="flex items-center w-auto min-w-28">
           <p class="text-zing-800 text-xl">{{ textAreaAgregar.title }}</p>
         </div>
-
-        <div class="size-auto flex flex-col items-center gap-4">
-          <div
-            v-for="(detail, index) in formAgregar.details"
-            class="size-auto flex items-center justify-center"
-          >
-            <div class="w-lg flex items-center justify-center">
-              <TextAreaComponentPrimary
-                :icon="textAreaAgregar.icon"
-                :name="textAreaAgregar.name"
-                :placeholder="textAreaAgregar.placeholder"
-                v-model="formAgregar.details[index]"
-              />
-            </div>
-            <div class="size-auto flex items-center justify-center">
-              <IconPrimary
-                v-if="index"
-                @click="eliminarDetalleItem(index)"
-                :icono="iconDelete.icon"
-                :color="iconDelete.color"
-                :color-hover="iconDelete.coloHover"
-              />
-            </div>
-            <div class="flex items-center justify-center h-auto w-40 px-4">
-              <ButtonPrimary
-                v-if="index === formAgregar.details.length - 1"
-                @click.prevent="agregarDetalleItem"
-                :color-bg="botonAddItem.colorBg"
-                :color-hover="botonAddItem.colorHover"
-                :title="botonAddItem.title"
-              />
-            </div>
-          </div>
+        <div class="w-lg flex items-center justify-center">
+          <TextAreaComponentPrimary
+            :icon="textAreaAgregar.icon"
+            :placeholder="textAreaAgregar.placeholder"
+            :name="textAreaAgregar.name"
+            v-model.number="formAgregar[textAreaAgregar.name] as keyof ProductRequest
+            "
+          />
         </div>
       </div>
+      <p>Información de la variante</p>
+      <div
+        v-for="select in selectVariant"
+        class="flex items-center w-auto min-w-[800px]"
+      >
+        <div class="flex items-center w-auto min-w-28">
+          <p class="text-zing-800 text-xl">{{ select.title }}</p>
+        </div>
+        <div class="w-lg flex items-center justify-center">
+          <SelectComponent
+            :name="select.name"
+            :options="select.options"
+            v-model.number="formAgregar[select.name] as keyof ProductRequest
+            "
+          />
+        </div>
+      </div>
+      <!-- price -->
+
+      <div class="flex items-center w-auto min-w-[800px]">
+        <div class="flex items-center w-auto min-w-28">
+          <p class="text-zing-800 text-xl">{{ inputsAgregar[1].title }}</p>
+        </div>
+        <div class="w-lg flex items-center justify-center">
+          <InputPrimary
+            :icon="inputsAgregar[1].icon"
+            :placeholder="inputsAgregar[1].placeholder"
+            :type="inputsAgregar[1].type"
+            :name="inputsAgregar[1].name"
+            v-model="formAgregar[inputsAgregar[1].name] as keyof ProductWithVariantRequest
+            "
+          />
+        </div>
+      </div>
+      <!-- image -->
 
       <div class="flex items-center w-auto min-w-[800px]">
         <div class="flex items-center w-auto min-w-28">
@@ -131,14 +98,13 @@
           <InputPrimary
             :icon="inputsAgregar[2].icon"
             :placeholder="inputsAgregar[2].placeholder"
-            :type="inputsAgregar[2].name"
+            :type="inputsAgregar[2].type"
             :name="inputsAgregar[2].name"
-            v-model.number="formAgregar[inputsAgregar[2].name] as keyof ProductRequest
+            v-model="formAgregar[inputsAgregar[2].name] as keyof ProductWithVariantRequest
             "
           />
         </div>
       </div>
-
       <!-- button -->
       <div class="h-auto w-36">
         <ButtonPrimary :title="buttonAddTitle" />
@@ -150,16 +116,19 @@
 <script lang="ts" setup>
 //importamos iconos
 import { faTag } from "@fortawesome/free-solid-svg-icons";
-import { faImage } from "@fortawesome/free-solid-svg-icons";
 import { faListUl } from "@fortawesome/free-solid-svg-icons";
-import { faMoneyBill } from "@fortawesome/free-solid-svg-icons";
-import { faTrash } from "@fortawesome/free-solid-svg-icons";
-import type { Categoria } from "~/interfaces/Categoria";
-import type { GenderStrick,ProductRequest } from "~/interfaces/Producto";
+import type { ProductWithVariantSchema } from "~/interfaces/ProductWithVariantSchema";
+import type { SelectOption } from "~/interfaces/SelectOption";
+
+import type { Category } from "~/services/Category/domain/models/Category";
+import type { Color } from "~/services/Color/domain/models/Color";
+import type { ProductRequest } from "~/services/Product/domain/models/ProductRequest";
+import type { ProductWithVariantRequest } from "~/services/Product/domain/models/ProductWithVariantRequest";
+import type { Size } from "~/services/Size/domain/models/Size";
 //informacion para el boton
 const buttonAddTitle: string = "Agregar";
 const inputsAgregar: {
-  name: keyof ProductRequest;
+  name: keyof ProductWithVariantSchema;
   title: string;
   type: string;
   icon: any;
@@ -173,58 +142,59 @@ const inputsAgregar: {
     placeholder: "Ingrese Nombre",
   },
   {
-    name: "images",
-    title: "Imagenes",
-    type: "text",
-    icon: faImage,
-    placeholder: "Ingrese Imagen",
-  },
-  {
     name: "price",
-    title: "Precios",
+    title: "Precio",
     type: "number",
-    icon: faMoneyBill,
+    icon: faTag,
     placeholder: "Ingrese Precio",
   },
+  {
+    name: "image",
+    title: "Imagen",
+    type: "file",
+    icon: faTag,
+    placeholder: "Seleccione Imagen",
+  },
 ];
+
 //para textarea
 const textAreaAgregar: {
-  name: keyof ProductRequest;
+  name: keyof ProductWithVariantSchema;
   title: string;
   icon: any;
   placeholder: string;
 } = {
-  name: "details",
-  title: "Detalles",
+  name: "description",
+  title: "Descripcion",
   icon: faListUl,
-  placeholder: "Ingrese Detalle",
+  placeholder: "Ingrese Descripción",
 };
 //para select categoria
 
 //categoryStore
-const categoryStore = useCategoryStore();
-//genderStore
-const genderStore = useGenderStore();
+
 //al montar cargamos categorias
 onMounted(async () => {
   //para categorias
-  categoryStore.recoverCategories();
-  if (!categoryStore.categories.length) {
-    await categoryStore.loadCategories();
-  }
-  //para genders
-  genderStore.recoverGenders();
-  if (!genderStore.genders.length) {
-    await genderStore.loadGenders();
-  }
+  const { findAll } = useCategory();
+  const categories = await findAll();
+  categoriesOptions.value = itemsToOptions(categories);
+  //for colors
+  const { findAll: findAllColors } = useColorr();
+  const colors = await findAllColors();
+  colorsOptions.value = itemsToOptions(colors);
+  //for sizes
+  const { findAll: findAllSizes } = useSizee();
+  const sizes = await findAllSizes();
+  sizesOptions.value = itemsToOptions(sizes);
 });
 
-//obtenemos categorias y generos
-const categories = computed(() => categoryStore.categories);
-const genders = computed(() => genderStore.genders);
-
+//ref for selects
+const categoriesOptions = ref<SelectOption[]>([]);
+const colorsOptions = ref<SelectOption[]>([]);
+const sizesOptions = ref<SelectOption[]>([]);
 //funcion para rellenar options
-const itemsToOptions = (items: Categoria[] | GenderStrick[]) => {
+const itemsToOptions = (items: Category[] | Color[] | Size[]) => {
   let options: { value: number | string; label: string }[] = [];
   items.forEach((item) => {
     options.push({ value: item.id, label: item.name });
@@ -234,52 +204,61 @@ const itemsToOptions = (items: Categoria[] | GenderStrick[]) => {
 
 const selectsAgregar = computed<
   {
-    name: keyof ProductRequest;
+    name: keyof ProductWithVariantSchema;
     title: string;
     options: { value: string | number; label: string }[];
   }[]
 >(() => [
   {
-    name: "category",
+    name: "categoryId",
     title: "Categoria",
-    options: itemsToOptions(categories.value),
+    options: categoriesOptions.value,
   },
   {
     name: "gender",
     title: "Género",
-    options: itemsToOptions(genders.value),
+    options: genderOptions,
   },
 ]);
-//reactive de formulario
-const formAgregar = reactive<ProductRequest>({
-  name: "",
-  category: 1,
-  gender: 1,
-  images: [""],
-  details: [""],
-  price: null,//verificar o cambiar interface
-});
-//datos de botones añadir
-const botonAddItem = {
-  title: "Añadir",
-  colorBg: "pink-500",
-  colorHover: "pink-600",
-};
 
-//funciones para manegar imagenes
-const agregarImagenItem = () => formAgregar.images.push("");
-const eliminarImagenItem = (index: number) =>
-  formAgregar.images.splice(index, 1);
-//funciones para manegar details
-const agregarDetalleItem = () => formAgregar.details.push("");
-const eliminarDetalleItem = (index: number) =>
-  formAgregar.details.splice(index, 1);
-//informacion para el boton eliminar
-const iconDelete: { icon: any; color: string; coloHover: string } = {
-  icon: faTrash,
-  color: "pink-500",
-  coloHover: "pink-600",
-};
+//for select variant
+const selectVariant = computed<
+  {
+    name: keyof ProductWithVariantSchema;
+    title: string;
+    options: { value: string | number; label: string }[];
+  }[]
+>(() => [
+  {
+    name: "colorId",
+    title: "Color",
+    options: colorsOptions.value,
+  },
+  {
+    name: "sizeId",
+    title: "Tamaño",
+    options: sizesOptions.value,
+  },
+]);
+
+const genderOptions = [
+  { value: "Unisex", label: "Unisex" },
+  { value: "Femenino", label: "Femenino" },
+  { value: "Masculino", label: "Masculino" },
+];
+
+//reactive de formulario
+const formAgregar = reactive<ProductWithVariantSchema>({
+  name: "",
+  categoryId: 1,
+  gender: "Unisex",
+  description: "",
+  colorId: 1,
+  sizeId: 1,
+  price: 0,
+  image: null,
+});
+
 //emit
 const emit = defineEmits(["send-product"]);
 //funcion de envio de formulario

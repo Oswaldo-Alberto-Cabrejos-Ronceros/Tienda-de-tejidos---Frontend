@@ -1,19 +1,21 @@
 <template>
   <div class="w-full h-auto flex flex-col py-1">
-    <AdminProductAddForm @send-product="sendProduct"/>
+    <AdminProductAddForm @send-product="sendProduct" />
   </div>
 </template>
 
 <script lang="ts" setup>
+import type { ProductWithVariantSchema } from "~/interfaces/ProductWithVariantSchema";
+
 definePageMeta({
-  layout:'admin'
+  layout: "admin",
 });
 //enviar al backend
-const sendProduct=(product:any)=>{
+const sendProduct = async (product: ProductWithVariantSchema) => {
+  console.log("Producto a enviar:", product.image);
   //funcion de useProduct
-  const {addProduct}= useProduct();
-  addProduct(product);
-  navigateTo('/admin/productos/');
-}
+  const { createWithVariant } = useProductt();
+  await createWithVariant(product);
+  navigateTo("/admin/productos/");
+};
 </script>
-

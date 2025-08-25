@@ -1,8 +1,8 @@
 <template>
   <div class="flex flex-col text-zinc-800 w-[90%] gap-2 pt-2">
     <div v-if="usuario" class="flex gap-2">
-      <h3 class="text-3xl font-semibold">
-        {{ `${usuario.first_name} ${usuario.last_name}` }}
+      <h3 class="text-2xl font-semibold">
+        {{ `${usuario.name} ${usuario.lastname}` }}
       </h3>
       <IconPrimary
         v-for="icon in iconsCrud"
@@ -22,50 +22,30 @@
       <p class="text-base">{{ usuario[infoKey.clave] }}</p>
     </div>
     <p v-else>Cargando...</p>
-    <p class="text-xl font-semibold">Favoritos</p>
-    <ProductCarrucel :products="productos" />
-    <p class="text-xl font-semibold">Ultimas compras</p>
-    <!-- Simulamos tabla vacio, despues logica se aplicara a componente -->
-     <p class="text-xl self-center">No hay compras</p>
   </div>
 </template>
 
 <script lang="ts" setup>
-import type { Usuario } from "~/interfaces/Usuario";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { faPen } from "@fortawesome/free-solid-svg-icons";
-import type { Producto } from "~/interfaces/Producto";
-//obtener usuario de userStore
-const userStore = useUserStore();
-const productStore = useProductStore();
+import type { User } from "~/services/User/domain/models/User";
+import { useUser } from "~/composables/useUser";
+import { useAuthentication } from "~/composables/useAuthentication";
+
+const { findById } = useUser();
+
+const { getUserId } = useAuthentication();
+
 //llamamos al meotod de cargar desde sesion al montar el componente
 onMounted(async () => {
-  userStore.loadFromSession();
-  if (!userStore.userData) await userStore.recoverUserData();
-  if (!userStore.isAuthenticated) {
-    navigateTo("/");
-  }
-  //manejamos productos
-  productStore.recoverProducts();
-  console.log(productStore.products)
-  if (!productStore.products.length) await productStore.loadFavoriteProducts();
-  //manejamos productos favoritos
-  productStore.recoverFavoriteProducts();
-  console.log(productStore.products);
-  console.log(productStore.favoriteProducts)
-  if (!productStore.favoriteProducts.length)
-    await productStore.loadFavoriteProducts();
-
+  const id = getUserId();
+  usuario.value = await findById(id);
 });
-const usuario = computed(() => userStore.userData as Usuario);
-//productos
-//obtenemos el getter para parsear favoriteProduct a Product
-const { getFavoritesProductsToProduct } = productStore;
-const productos = asyncComputed(()=> getFavoritesProductsToProduct(productStore.favoriteProducts),[] as Producto[]);
+const usuario = ref<User | null>(null);
 //key para iterar informacion
-const infoKeys: { clave: keyof Usuario; title: string }[] = [
-  { clave: "first_name", title: "Nombres" },
-  { clave: "last_name", title: "Apellidos" },
+const infoKeys: { clave: keyof User; title: string }[] = [
+  { clave: "name", title: "Nombres" },
+  { clave: "lastname", title: "Apellidos" },
   { clave: "phone", title: "Celular" },
 ];
 //informacion de icons crud
@@ -81,7 +61,7 @@ const iconsCrud: { icon: any; color: string; colorHover: string }[] = [
     colorHover: "blue-500",
   },
 ];
-//para ultimas compras 
+//para ultimas compras
 //por mientras simulamos vacio , depues se hara llamada a api
-const ultimasCompras=[]
+const ultimasCompras = [];
 </script>

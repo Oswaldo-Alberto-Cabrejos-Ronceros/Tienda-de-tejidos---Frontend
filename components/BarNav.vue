@@ -1,5 +1,5 @@
 <template>
-  <nav class="w-screen flex items-center justify-center">
+  <nav class="w-full flex items-center justify-center">
     <div
       class="w-[90%] grid grid-cols-6 grid-rows-1 border-solid  border-neutral-700 border-b"
     >

@@ -1,5 +1,5 @@
 <template>
-  <div class=" relative w-screen h-[35vh] min-h-96 max-h-[720px] overflow-hidden">
+  <div class=" relative w-full h-[35vh] min-h-96 max-h-[720px] overflow-hidden">
     <img  v-for="(imagen,i) in props.imagenes" :src="imagen" alt="imagen" class="absolute w-full h-full object-cover transition-opacity duration-1000 ease-in-out"  :class="{ 'opacity-100': i === indice, 'opacity-0': i !== indice }">
   </div>
 </template>

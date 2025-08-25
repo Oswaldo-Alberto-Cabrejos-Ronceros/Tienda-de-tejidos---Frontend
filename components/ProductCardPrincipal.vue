@@ -4,20 +4,20 @@
     class="w-full flex gap-3 text-zinc-800 flex-col md:flex-row"
   >
     <!-- producto imagenes -->
-    <div class="flex gap-1 w-full md:w-[60%]">
-      <div class="flex flex-1 flex-col gap-1">
+    <div class="flex gap-1 w-full md:w-[60%] sm:flex-row flex-col-reverse">
+      <div class="flex flex-col gap-1">
         <ImageCardSmall
-          v-for="(image, id) in product.images"
+          v-for="(image, id) in product.variants[0].images"
           :id="id"
           :name="`${product.name} ${id}`"
           :image="image"
           @change-image="changeImage"
         />
       </div>
-      <div class="flex items-center">
+      <div class="flex items-center flex-1">
         <ImageCardLarge
           :name="product.name"
-          :image="product.images[indexImage]"
+          :image="product.variants[0].images[indexImage]"
         />
       </div>
     </div>
@@ -25,7 +25,7 @@
     <div class="w-full md:w-[40%] flex flex-col gap-4">
       <div class="flex items-center gap-1">
         <p class="text-2xl font-semibold">{{ product.name }}</p>
-        <IconPrimary
+        <!--         <IconPrimary
           v-if="!isAdmin && !isFavorite"
           @click="isAuthenticated ? handleAddFavoriteProduct() : goToLogin()"
           :icono="iconHeart.icon"
@@ -38,16 +38,15 @@
           :icono="iconHeartFavorite.icon"
           :color="iconHeartFavorite.color"
           :color-hover="iconHeartFavorite.colorHover"
-        />
+        /> -->
       </div>
-      <p class="text-2xl font-bold">S/{{ " " + product.price }}</p>
-      <SelectComponent
+      <p class="text-2xl font-bold">S/{{ " " + product.variants[0].price }}</p>
+      <!--       <SelectComponent
         v-if="!isAdmin"
         :name="cantidadSelect.name"
         :options="cantidadSelect.options"
         v-model="quantity"
       />
-      <!-- button  -->
       <ButtonPrimary
         v-if="!isAdmin"
         @click="emitirComprar(product)"
@@ -55,27 +54,34 @@
         :color-bg="infoButton.colorBg"
         :color-hover="infoButton.colorHover"
         :rounded="infoButton.rounded"
-      />
+      /> -->
+
       <!-- caracteristicas -->
+             <ButtonPrimary
+        v-if="!isAdmin"
+        @click="emitConsultar(product)"
+        :title="infoButton.title"
+        :color-bg="infoButton.colorBg"
+        :color-hover="infoButton.colorHover"
+        :rounded="infoButton.rounded"
+      />
       <p class="text-xl border-solid border-zinc-800 border-b w-full py-1">
         Información
       </p>
       <div class="text-base flex flex-col gap-1">
         <p>Características:</p>
-        <p v-for="caracteristica in product.details">
-          - {{ " " + caracteristica }}
-        </p>
+        <p>{{ product.description }}</p>
       </div>
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
-import type { Producto } from "~/interfaces/Producto";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { ref } from "vue";
+import type { ProductWithVariants } from "~/services/Product/domain/models/ProductWithVariants";
 const props = defineProps<{
-  product?: Producto;
+  product?: ProductWithVariants;
   isAdmin?: boolean;
 }>();
 //authStore
@@ -124,7 +130,7 @@ const infoButton: {
   colorHover: string;
   rounded: string;
 } = {
-  title: "Comprar",
+  title: "Consultar",
   colorBg: "pink-400",
   colorHover: "pink-600",
   rounded: "rounded-xl",
@@ -137,9 +143,13 @@ const changeImage = (index: number) => {
 //referencia para cantidad
 const quantity = ref("1");
 //emision de evento para compra
-const emit = defineEmits(["comprar"]);
-const emitirComprar = (product: Producto) => {
+const emit = defineEmits(["comprar", "consultar"]);
+const emitirComprar = (product: ProductWithVariants) => {
   emit("comprar", product, Number(quantity.value));
+};
+//for emit consultar
+const emitConsultar = (product: ProductWithVariants) => {
+  emit("consultar", product);
 };
 //funciones para el boton favorito
 const goToLogin = () => {

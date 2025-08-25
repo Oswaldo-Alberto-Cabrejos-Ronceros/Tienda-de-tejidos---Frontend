@@ -10,7 +10,7 @@
     <div
       class="absolute w-[90%] flex flex-col items-center justify-center gap-3 p-2"
     >
-      <h3 class="text-3xl font-extrabold">{{ title }}</h3>
+      <h3 class=" font-extrabold">{{ title }}</h3>
       <p class="text-2xl font-extrabold">{{ content }}</p>
     </div>
   </div>
