@@ -53,7 +53,7 @@ useHead({ title: "Artis" });
 // items del menú
 const items = [
   { icon: faTag, title: "Productos", rute: "/productos" },
-  { icon: faUser, title: "Usuarios", rute: "/usuarios" },
+  //{ icon: faUser, title: "Usuarios", rute: "/usuarios" },
   { icon: faSwatchbook, title: "Tallas y colores", rute: "/tallas-colores" },
 ];
 

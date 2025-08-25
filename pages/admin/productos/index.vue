@@ -7,9 +7,10 @@
       <SearchComponent />
     </div>
     <!-- seccion de filtros -->
-    <div class="w-full flex justify-between pt-2">
+     <!--    <div class="w-full flex justify-between pt-2">
       <FiltersComponent /> <OrdenarComponent />
-    </div>
+    </div>  -->
+
     <!-- seccion de productos -->
     <div class="w-full h-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 py-4">
       <div class="flex items-center justify-center">

@@ -13,7 +13,7 @@ const categories = ref<{ image: string; name: string; rute: string }[]>([]);
 
 const categoryPedido = {
   image:
-    "https://www.crochetisimo.com/wp-content/uploads/2023/10/0e1d0cd3-e9ea-435c-816a-316fbe9c7fdd-827x1024.png",
+    "https://kajabi-storefronts-production.kajabi-cdn.com/kajabi-storefronts-production/file-uploads/blogs/2147507051/images/1ffe6b-f0a4-43e-13ff-15be78e21c_pexels-photo-3945638.webp",
   name: "Pedidos",
   rute: "/contacto",
 };
