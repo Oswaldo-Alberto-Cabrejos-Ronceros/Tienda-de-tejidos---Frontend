@@ -85,7 +85,7 @@ const informacionItemts: { name: string; rute: string }[] = [
   { name: "Sobre Nosotros", rute: "/nosotros" },
   { name: "Términos y condiciones", rute: "/terminos" },
   { name: "Preguntas Frecuentes", rute: "/preguntas" },
-  { name: "Contacto", rute: "contacto" },
+  { name: "Contacto", rute: "/contacto" },
 ];
 //varible del v-model
 const email = ref("");
